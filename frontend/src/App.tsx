@@ -40,11 +40,11 @@ function App() {
 
   return (
     <div className="w-full min-h-screen flex flex-col overflow-x-hidden">
-      <div className="absolute top-0 left-0 w-1/3 md:z-40 pointer-events-none">
+      <div className="absolute -top-16 -left-8 w-1/3 md:z-40 pointer-events-none">
         <img 
           src="/compressed/backgrounds/corner-cloud.webp" 
           alt=""
-          className="w-full h-full object-cover select-none"
+          className="w-full h-full object-cover select-none transform -rotate-12"
         />
       </div>
 
@@ -104,12 +104,23 @@ function App() {
           <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8 pb-16 z-10 h-full pt-16 md:pt-0 md:h-auto">
             <div className="flex flex-col gap-4 w-full md:w-[648px]">
               <div className="mb-6">
-                <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-3 mb-4">
                   <a href='https://hackclub.com' className='transition-transform hover:scale-105 active:scale-95'>
                     <img 
                       src="/compressed/decorative/hack-club-flag.webp" 
                       alt="Hack Club" 
                       className="w-[151px] h-[53px] object-cover transform rotate-[-4.8deg] select-none"
+                    />
+                  </a>
+                  <div className="w-[2px] h-8 bg-white opacity-60"></div>
+                  <a href='https://opensauce.com' className='transition-transform hover:scale-105 active:scale-95'>
+                    <img 
+                      src="/branding/logo-opensauce.webp" 
+                      alt="Open Sauce" 
+                      className="h-[70px] object-contain select-none pl-4"
+                      style={{ 
+                        filter: "drop-shadow(3px 5px 0px rgba(0,0,0,0.25))"
+                      }}
                     />
                   </a>
                 </div>
