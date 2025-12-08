@@ -101,7 +101,7 @@ function App() {
             />
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8 pb-16 z-30 h-full pt-16 md:pt-0 md:h-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-start xl:items-center w-full gap-8 pb-16 z-30 h-full pt-16 md:pt-0 md:h-auto">
             <div className="flex flex-col gap-4 w-full md:w-[648px]">
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-4 relative z-30">
@@ -203,34 +203,36 @@ function App() {
               </div>
             </div>
 
-            <div className="relative w-full md:w-auto">
-              <div className="flex items-center justify-center gap-3 mb-4 2xl:mb-8 pt-6 md:pt-0">
-                <p 
-                  className="text-white text-4xl 2xl:text-6xl md:text-4xl font-bold font-ember-and-fire"
-                  style={{ 
-                    textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
-                  }}
-                >
-                  watch the video
-                </p>
+            <div className="relative w-full md:w-0 xl:w-auto shrink-0 xl:self-end xl:mb-8">
+              <div className="md:absolute md:right-0 md:top-0 xl:static">
+                <div className="flex items-center justify-center gap-3 mb-4 2xl:mb-8 pt-6 md:pt-0">
+                  <p 
+                    className="text-white text-4xl 2xl:text-6xl md:text-4xl font-bold font-ember-and-fire"
+                    style={{ 
+                      textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
+                    }}
+                  >
+                    watch the video
+                  </p>
 
-                <img 
-                  src="/compressed/ui/arrow.webp" 
-                  alt="" 
-                  className="w-[45px] md:w-[55px] h-[33px] md:h-[41px] translate-y-6 rotate-[6.2deg] z-50 select-none"
-                />
-              </div>
+                  <img 
+                    src="/compressed/ui/arrow.webp" 
+                    alt="" 
+                    className="w-[45px] md:w-[55px] h-[33px] md:h-[41px] translate-y-6 rotate-[6.2deg] z-50 select-none"
+                  />
+                </div>
 
-              <div className="relative transform rotate-[1.7deg] transition-transform hover:scale-105 w-full max-w-[442px] mx-auto">
-                <iframe
-                  src="https://www.youtube.com/embed/yVgqQQ5xYJo?si=1PngS7-FtsjCfAGy" 
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  className="w-full aspect-video rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,0.25)]"
-                />
+                <div className="relative transform rotate-[1.7deg] transition-transform hover:scale-105 w-[90vw] md:w-[30vw] xl:w-[442px]">
+                  <iframe
+                    src="https://www.youtube.com/embed/yVgqQQ5xYJo?si=1PngS7-FtsjCfAGy" 
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="w-full aspect-video rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,0.25)]"
+                  />
+                </div>
               </div>
             </div>
           </div>
