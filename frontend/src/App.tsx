@@ -50,7 +50,7 @@ function App() {
 
       <div className="w-full h-screen">
         <header className="relative h-[60px] md:h-[115px] bg-[#45b4f5] justify-end items-center content-center md:pr-16 hidden sm:flex">
-          <nav className="flex gap-4 w-full justify-between px-8 md:px-0 text-2xl md:gap-12 items-center md:justify-end text-white md:text-5xl font-bold font-ember-and-fire">
+          <nav className="flex gap-4 w-full justify-between px-8 md:px-0 text-2xl md:gap-12 items-center md:justify-end text-white md:text-3xl xl:text-5xl font-bold font-ember-and-fire">
             <NavbarLink onClick={() => scrollToSection('steps')}>How to organize</NavbarLink>
             {/* <NavbarLink onClick={() => scrollToSection('map')}>Map</NavbarLink> */}
             {/* <NavbarLink onClick={() => scrollToSection('letter')}>Letter</NavbarLink> */}
