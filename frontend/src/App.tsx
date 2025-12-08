@@ -48,7 +48,7 @@ function App() {
 
   return (
     <div className="w-full min-h-screen flex flex-col overflow-x-hidden">
-      <div className="absolute -top-16 -left-8 w-1/3 z-20 pointer-events-none">
+      <div className="absolute -top-16 -left-8 w-1/3 z-20 pointer-events-none hidden min-[860px]:block">
         <img 
           src="/compressed/backgrounds/corner-cloud.webp" 
           alt=""
