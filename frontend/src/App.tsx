@@ -404,7 +404,7 @@ function App() {
             Stories from past events
           </h2>
           
-          <div className="flex flex-col md:flex-row gap-12 justify-between w-full items-center">
+          <div className="flex flex-col min-[1050px]:flex-row gap-12 justify-between w-full items-center">
             <StoryCard 
               imageSrc="/stories/counterspell.webp"
               imageAlt=""

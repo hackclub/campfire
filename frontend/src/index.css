@@ -37,7 +37,7 @@ html, body, #root {
 }
 
 @theme {
-  --breakpoint-md: 840px;
+  --breakpoint-md: 860px;
   
   --font-amatic: 'Amatic SC', sans-serif;
   --font-ember-and-fire: 'Ember & Fire', sans-serif;

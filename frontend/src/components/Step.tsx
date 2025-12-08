@@ -9,11 +9,11 @@ function Step({ stepNumber, imageSrc, imageAlt, isReversed = false, children }: 
   return (
     <div className={`flex gap-16 items-center w-full flex-col-reverse ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
       <div className={`relative flex flex-col text-[#000] flex-1 ${isReversed ? 'md:items-start' : 'md:items-end md:text-right'}`}>
-        <div className="absolute -inset-12 md:-inset-16 -z-60 pointer-events-none">
+        <div className="absolute -inset-24 md:-inset-16 -z-60 pointer-events-none">
           <img 
             src="/compressed/ui/step-bg.webp" 
             alt="" 
-            className="w-min h-full object-cover select-none translate-y-2 md:translate-y-0"
+            className="w-auto md:w-min h-full md:object-cover select-none translate-y-2 md:translate-y-0"
           />
         </div>
         
@@ -24,7 +24,7 @@ function Step({ stepNumber, imageSrc, imageAlt, isReversed = false, children }: 
         </p>
 
         <p 
-          className={`text-4xl leading-tight font-source-serif-pro relative z-10 md:max-w-3/4`}
+          className={`text-3xl md:text-4xl leading-tight font-source-serif-pro relative z-10 md:max-w-3/4`}
         >
           {children}
         </p>
