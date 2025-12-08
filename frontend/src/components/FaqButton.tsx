@@ -15,7 +15,7 @@ function FaqButton({ content, href }: FaqButtonProps) {
   return (
     <div 
       className={`
-        flex items-start px-5 py-12 justify-center w-[467px] transition-transform
+        flex items-start px-5 py-12 justify-center w-full max-w-[90vw] md:max-w-none md:w-[467px] transition-transform
         ${isDisabled 
           ? 'bg-gray-500 cursor-not-allowed shadow-[8px_8px_0px_0px_#374151]' 
           : 'bg-[#091e8b] cursor-pointer hover:scale-105 active:scale-95 shadow-[8px_8px_0px_0px_#0a1861]'
@@ -24,7 +24,7 @@ function FaqButton({ content, href }: FaqButtonProps) {
       onClick={handleClick}
     >
       <div className="flex gap-1 items-center">
-        <div className="relative w-8 h-8 overflow-hidden">
+        <div className="relative w-8 h-8 overflow-hidden hidden md:block">
           <img 
             alt="" 
             className="absolute -inset-1 w-full h-full object-cover select-none" 

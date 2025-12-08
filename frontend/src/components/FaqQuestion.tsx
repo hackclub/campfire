@@ -11,7 +11,7 @@ function FaqQuestion({ question, children }: {
   };
 
   return (
-    <div className="flex flex-col items-center w-full md:w-[467px]">
+    <div className="flex flex-col items-center w-full max-w-[90vw] md:max-w-none md:w-[467px]">
       <div
         onClick={toggleExpanded}
         className={`
