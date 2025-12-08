@@ -4,6 +4,7 @@ import Step from './components/Step.js';
 import StoryCard from './components/StoryCard.js';
 import GameCard from './components/GameCard.js';
 import NavbarLink from './components/NavbarLink.tsx';
+import VideoEmbed from './components/VideoEmbed.tsx';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
@@ -13,12 +14,19 @@ const FORM_URL_RSVP = "https://forms.hackclub.com/t/a3QSt8MuvHus";
 function App() {
   const [email, setEmail] = useState("");
   const [scrollY, setScrollY] = useState(document.body.scrollTop);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1280);
   const emailRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
       setScrollY(window.scrollY);
     });
+    
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1280);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -68,7 +76,7 @@ function App() {
           <div
             className="absolute bottom-[32px] right-[40px] md:right-[140px] w-full h-full pointer-events-none"
             style={{
-              transform: `translateY(${-scrollY / 12}px)`
+              transform: isLargeScreen ? `translateY(${-scrollY / 12}px)` : undefined
             }}
           >
             {/* fishy on the right. His name is frederick. */}
@@ -88,7 +96,7 @@ function App() {
               alt=""
               className="w-full h-full object-cover object-top select-none"
               style={{
-                transform: `translateY(${-scrollY / 5}px)`
+                transform: isLargeScreen ? `translateY(${-scrollY / 5}px)` : undefined
               }}
             />
           </div>
@@ -203,38 +211,7 @@ function App() {
               </div>
             </div>
 
-            <div className="relative w-full md:w-0 xl:w-auto shrink-0 xl:self-end xl:mb-8">
-              <div className="md:absolute md:right-0 md:top-0 xl:static">
-                <div className="flex items-center justify-center gap-3 mb-4 2xl:mb-8 pt-6 md:pt-0">
-                  <p 
-                    className="text-white text-4xl 2xl:text-6xl md:text-4xl font-bold font-ember-and-fire"
-                    style={{ 
-                      textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
-                    }}
-                  >
-                    watch the video
-                  </p>
-
-                  <img 
-                    src="/compressed/ui/arrow.webp" 
-                    alt="" 
-                    className="w-[45px] md:w-[55px] h-[33px] md:h-[41px] translate-y-6 rotate-[6.2deg] z-50 select-none"
-                  />
-                </div>
-
-                <div className="relative transform rotate-[1.7deg] transition-transform hover:scale-105 w-[90vw] md:w-[30vw] xl:w-[442px]">
-                  <iframe
-                    src="https://www.youtube.com/embed/yVgqQQ5xYJo?si=1PngS7-FtsjCfAGy" 
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    className="w-full aspect-video rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,0.25)]"
-                  />
-                </div>
-              </div>
-            </div>
+            <VideoEmbed className="hidden xl:block self-end mb-8" />
           </div>
         </section>
 
@@ -244,15 +221,19 @@ function App() {
             alt=""
             className="w-full h-full object-cover select-none"
             style={{
-              transform: `translateY(${scrollY / 10}px)`
+              transform: isLargeScreen ? `translateY(${scrollY / 10}px)` : undefined
             }}
           />
         </div>
       </div>
 
-      <section className="relative pt-[13vw] pb-96 bg-[url(/backgrounds/underwater-gradient.webp)] bg-cover">
+      <section className="relative pb-96 bg-[url(/backgrounds/underwater-gradient.webp)] bg-cover bg-top">
+        <div className="xl:hidden pt-16 pb-8 relative z-10">
+          <VideoEmbed className="px-6" />
+        </div>
+        <div className="pt-[8vw] xl:pt-[13vw]"></div>
         <div className="absolute top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-[#004b2a] to-transparent pointer-events-none"></div>
-        <div className="absolute top-[30px] left-0 w-full scale-125 pointer-events-none z-50">
+        <div className="absolute top-0 xl:top-[30px] left-0 w-full scale-125 pointer-events-none z-50">
           <img src="/decorative/vines.webp" alt="" className="w-full h-full object-cover select-none" />
         </div>
 
