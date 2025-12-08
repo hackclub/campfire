@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="w-full min-h-screen flex flex-col overflow-x-hidden">
-      <div className="absolute -top-16 -left-8 w-1/3 md:z-40 pointer-events-none">
+      <div className="absolute -top-16 -left-8 w-1/3 z-20 pointer-events-none">
         <img 
           src="/compressed/backgrounds/corner-cloud.webp" 
           alt=""
@@ -82,11 +82,11 @@ function App() {
             </div>
           </div>
 
-          <div className="absolute bottom-0 md:bottom-[160px] flex items-end md:block left-0 w-full h-full md:animate-cloud-float-right pointer-events-none">
+          <div className="absolute bottom-0 left-0 w-full max-h-[120vh] overflow-hidden pointer-events-none md:animate-cloud-float-right">
             <img
               src="/backgrounds/bottom-cloud.webp"
               alt=""
-              className="select-none"
+              className="w-full h-full object-cover object-top select-none"
               style={{
                 transform: `translateY(${-scrollY / 5}px)`
               }}
@@ -101,10 +101,10 @@ function App() {
             />
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8 pb-16 z-10 h-full pt-16 md:pt-0 md:h-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8 pb-16 z-30 h-full pt-16 md:pt-0 md:h-auto">
             <div className="flex flex-col gap-4 w-full md:w-[648px]">
               <div className="mb-6">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-4 relative z-30">
                   <a href='https://hackclub.com' className='transition-transform hover:scale-105 active:scale-95'>
                     <img 
                       src="/compressed/decorative/hack-club-flag.webp" 
@@ -127,7 +127,7 @@ function App() {
                 
                 <div className="transform md:rotate-[-2.97deg]">
                   <h1 
-                    className="text-[#fcf5ed] text-[80px] md:text-[120px] md:text-[150px] font-normal leading-none mb-4 font-dream-planner"
+                    className="text-[#fcf5ed] text-[80px] md:text-[100px] xl:text-[150px] font-normal leading-none mb-4 font-dream-planner"
                     style={{ 
                       textShadow: "5px 8px 0px rgba(0,0,0,0.25)"
                     }}
@@ -138,7 +138,7 @@ function App() {
 
                 <div className="pl-2 md:pl-4">
                   <p 
-                    className="text-white text-4xl font-bold mb-2 font-ember-and-fire"
+                    className="text-white text-4xl md:text-3xl xl:text-4xl font-bold mb-2 font-ember-and-fire"
                     style={{ 
                       textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
                     }}
@@ -146,12 +146,12 @@ function App() {
                     Game jam for high schoolers in 200+ cities
                   </p>
                   <p 
-                    className="text-white text-4xl font-bold font-ember-and-fire"
+                    className="text-white text-4xl md:text-3xl xl:text-4xl font-bold font-ember-and-fire"
                     style={{ 
                       textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
                     }}
                   >
-                    Feb 28 - Mar 1, 2026
+                    Feb 7-8, 2026
                   </p>
                 </div>
               </div>
@@ -221,17 +221,15 @@ function App() {
                 />
               </div>
 
-              <div className="relative transform rotate-[1.7deg] transition-transform hover:scale-105">
+              <div className="relative transform rotate-[1.7deg] transition-transform hover:scale-105 w-full max-w-[442px] mx-auto">
                 <iframe
-                  width="442"
-                  height="249"
                   src="https://www.youtube.com/embed/yVgqQQ5xYJo?si=1PngS7-FtsjCfAGy" 
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                  className="h-[180px] md:h-[250px] w-auto md:w-full md:max-w-[442px] aspect-video rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,0.25)] mx-auto"
+                  className="w-full aspect-video rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,0.25)]"
                 />
               </div>
             </div>
