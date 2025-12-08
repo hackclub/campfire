@@ -275,7 +275,7 @@ function App() {
         <div id="steps" className="relative z-40 flex flex-col gap-24 items-center px-12 max-w-7xl mx-auto pt-12 md:pt-0">
           <Step 
             stepNumber={1}
-            imageSrc="/compressed/ui/step-signup.webp"
+            imageSrc="/compressed/ui/step-signup.jpeg"
             imageAlt="Step 1"
           >
             Find a team of <br></br><span className="font-bold text-[#F77034]">CO-ORGANIZERS</span>
