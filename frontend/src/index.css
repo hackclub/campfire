@@ -37,6 +37,8 @@ html, body, #root {
 }
 
 @theme {
+  --breakpoint-md: 840px;
+  
   --font-amatic: 'Amatic SC', sans-serif;
   --font-ember-and-fire: 'Ember & Fire', sans-serif;
   --font-national-park: 'National Park', sans-serif;
