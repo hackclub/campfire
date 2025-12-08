@@ -628,12 +628,12 @@ function App() {
 
         <div className="relative w-full px-4 pb-32 md:pb-16 md:px-0 bg-[#0f371d] -mt-3 flex flex-col items-center justify-center gap-16 md:gap-6 z-10">
           <p 
-            className="text-white text-4xl md:text-5xl text-center font-bold font-ember-and-fire"
+            className="text-white text-3xl md:text-3xl text-center font-bold font-ember-and-fire"
             style={{ 
               textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
             }}
           >
-            made with ♥ by Hack Club teens
+            made with love by Hack Club & Open Sauce
           </p>
 
           <div className="mt-8 flex flex-col md:flex-row gap-16 max-w-6xl mx-auto px-4">
@@ -643,7 +643,7 @@ function App() {
               <a href="https://hackclub.com/clubs" target="_blank" className="hover:underline">Clubs</a>
               <a href="https://hackclub.com/conduct/" target="_blank" className="hover:underline">Code of Conduct</a>
             
-              <p className="text-white text-sm md:text-md text-right max-w-96 font-source-serif-pro">
+              <p className="text-white text-sm md:text-md text-right max-w-96 font-ember-and-fire">
                 © 2026 Hack Club. 501(c)(3) nonprofit (EIN: 81-2908499)
               </p>
             </div>
