@@ -329,11 +329,11 @@ function App() {
           <img src="/decorative/clouds-3-symmetric.webp" alt="" className="w-full h-full select-none" />
         </div>
 
-        <div id="letter" className="relative w-full h-full z-50 translate-y-20 md:translate-y-64 flex justify-center">
-          <img src='/compressed/backgrounds/world-map-left.webp' alt='' className='h-full hidden md:block' />
-          <div className='flex items-center md:block md:relative'>
-            <img src='/backgrounds/world-map-right.webp' alt='' className='h-full hidden md:block' />
-            <div className='md:absolute md:top-0 md:left-0 py-12 md:py-16 md:pb-0 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.25)] md:rounded-none md:shadow-none md:pt-30 pl-6 md:pl-12 pr-6 md:pr-64 text-xl bg-[#EAD6BE] border-[#DCA87E] border-4 md:border-0 md:bg-transparent flex flex-col gap-6 font-solway'>
+        <div id="letter" className="relative w-full h-full z-50 translate-y-20 min-[1200px]:translate-y-64 flex justify-center">
+          <img src='/compressed/backgrounds/world-map-left.webp' alt='' className='h-full hidden min-[1200px]:block' />
+          <div className='flex items-center min-[1200px]:block min-[1200px]:relative'>
+            <img src='/backgrounds/world-map-right.webp' alt='' className='h-full hidden min-[1200px]:block' />
+            <div className='min-[1200px]:absolute min-[1200px]:top-0 min-[1200px]:left-0 py-12 min-[1200px]:py-16 min-[1200px]:pb-0 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.25)] min-[1200px]:rounded-none min-[1200px]:shadow-none min-[1200px]:pt-30 pl-6 min-[1200px]:pl-12 pr-6 min-[1200px]:pr-64 text-xl bg-[#EAD6BE] border-[#DCA87E] border-4 min-[1200px]:border-0 min-[1200px]:bg-transparent flex flex-col gap-6 font-solway'>
               <h1>Dear hacker,</h1>
               <p>
                 You can make a change: inspire someone to build a game for the first time, help someone
