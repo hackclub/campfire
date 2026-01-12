@@ -40,7 +40,7 @@ function FlagshipCTA({ className, compact, maxWidth }: { className?: string; com
             compact ? "text-xl" : "text-2xl md:text-3xl"
           )}
         >
-          {compact ? "Join our flagship in LA!" : "Come to our flagship event in Los Angeles with William Osman and Michael Reeves!"}
+          {compact ? "Join our flagship in LA with Open Sauce creators!" : "Come to our flagship event in Los Angeles with William Osman and Michael Reeves!"}
         </span>
       </a>
     </div>
