@@ -11,10 +11,48 @@ import clsx from 'clsx';
 const FORM_URL_ORGANIZER_APPLICATION = "https://forms.hackclub.com/t/8L51MzWyrHus";
 const FORM_URL_RSVP = "https://forms.hackclub.com/t/a3QSt8MuvHus";
 
+function FlagshipCTA({ className, compact, maxWidth }: { className?: string; compact?: boolean; maxWidth?: boolean }) {
+  return (
+    <div className={className}>
+      <a
+        href="https://flagship.campfire.hackclub.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={clsx(
+          "flex items-center rounded-[20px] transition-transform hover:scale-105 active:scale-95 cursor-pointer",
+          compact ? "gap-4 px-6 py-3" : "gap-8 px-8 py-4",
+          maxWidth && "max-w-2xl"
+        )}
+        style={{
+          backgroundColor: '#F9E2CA',
+          border: '4px solid #D5A16C',
+          boxShadow: '-6px 10px 0px 0px rgba(0,0,0,0.25)'
+        }}
+      >
+        <img
+          src="/compressed/branding/logo-flagship.png"
+          alt="Campfire Flagship"
+          className={clsx("object-contain select-none", compact ? "h-10" : "h-12 md:h-14")}
+        />
+        <span
+          className={clsx(
+            "text-[#854d16] font-bold font-ember-and-fire",
+            compact ? "text-xl" : "text-2xl md:text-3xl"
+          )}
+        >
+          {compact ? "Join our flagship in LA!" : "Come to our flagship event in Los Angeles with William Osman and Michael Reeves!"}
+        </span>
+      </a>
+    </div>
+  );
+}
+
 function App() {
   const [email, setEmail] = useState("");
   const [scrollY, setScrollY] = useState(document.body.scrollTop);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1280);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const emailRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -24,6 +62,8 @@ function App() {
     
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1280);
+      setWindowHeight(window.innerHeight);
+      setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -109,9 +149,21 @@ function App() {
             />
           </div>
 
+          {/* Flagship CTA Banner */}
+          <FlagshipCTA 
+            className={clsx(
+              "hidden min-[860px]:flex justify-center w-full absolute left-0 right-0 z-40",
+              windowHeight < 950 ? "-top-8" : "top-4"
+            )} 
+            maxWidth 
+            compact={windowHeight < 830}
+          />
+
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start xl:items-center w-full gap-8 pb-16 z-30 h-full pt-16 md:pt-0 md:h-auto">
             <div className="flex flex-col gap-4 w-full md:w-[648px]">
               <div className="mb-6">
+                {windowWidth >= 400 && <FlagshipCTA className="min-[860px]:hidden -mt-12 mb-8" compact={windowWidth < 500} />}
+
                 <div className="flex items-center gap-3 mb-4 relative z-30">
                   <a href='https://hackclub.com' className='transition-transform hover:scale-105 active:scale-95'>
                     <img 
