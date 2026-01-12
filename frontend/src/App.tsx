@@ -108,7 +108,10 @@ function App() {
           </nav>
         </header>
 
-        <section className="relative h-full flex items-end pb-32 2xl:pb-48 px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover">
+        <section className={clsx(
+            "relative h-full px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
+            windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-16" : "flex items-end pb-32 2xl:pb-48"
+          )}>
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <img src="/backgrounds/sky-shine.webp" alt="" className="w-full h-full object-cover select-none" />
           </div>
@@ -160,7 +163,10 @@ function App() {
           />
 
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start xl:items-center w-full gap-8 pb-16 z-30 h-full pt-16 md:pt-0 md:h-auto">
-            <div className="flex flex-col gap-4 w-full md:w-[648px]">
+            <div className={clsx(
+              "flex flex-col gap-4 w-full md:w-[648px]",
+              windowHeight > windowWidth && windowWidth < 860 && "justify-between h-full"
+            )}>
               <div className="mb-6">
                 {windowWidth >= 400 && <FlagshipCTA className="min-[860px]:hidden -mt-12 mb-8" compact={windowWidth < 500} />}
 
