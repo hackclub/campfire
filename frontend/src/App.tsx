@@ -151,8 +151,7 @@ function App() {
               className="w-full h-full object-cover object-top select-none"
             />
           </div>
-
-          {/* Flagship CTA Banner */}
+          
           <FlagshipCTA 
             className={clsx(
               "hidden min-[860px]:flex justify-center w-full absolute left-0 right-0 z-40",
