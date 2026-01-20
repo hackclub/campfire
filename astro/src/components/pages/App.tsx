@@ -5,7 +5,7 @@ import Step from '../primitives/Step.js';
 import StoryCard from '../primitives/StoryCard.js';
 import GameCard from '../primitives/GameCard.js';
 import NavbarLink from '../primitives/NavbarLink.tsx';
-import VideoEmbed from '../primitives/VideoEmbed.tsx';
+import MapEmbed from '../primitives/MapEmbed.tsx';
 import { Map } from '../primitives/Map.tsx';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
@@ -57,6 +57,7 @@ function App({ events }: { events: EventLocation[] }) {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1280);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isMapOpen, setIsMapOpen] = useState(false);
   const emailRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -113,7 +114,7 @@ function App({ events }: { events: EventLocation[] }) {
         />
       </div>
 
-      <div className="w-full h-screen">
+      <div className={clsx("w-full relative", windowHeight > windowWidth && windowWidth < 860 ? "h-full" : "h-screen")}>
         <header className="relative h-[60px] md:h-[115px] bg-[#45b4f5] justify-end items-center content-center md:pr-16 hidden sm:flex">
           <nav className="flex gap-4 w-full justify-between px-8 md:px-0 text-2xl md:gap-12 items-center md:justify-end text-white md:text-3xl xl:text-5xl font-bold font-ember-and-fire">
             <NavbarLink onClick={() => scrollToSection('steps')}>How to organize</NavbarLink>
@@ -126,8 +127,8 @@ function App({ events }: { events: EventLocation[] }) {
         </header>
 
         <section className={clsx(
-            "relative h-full px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
-            windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-16" : "flex items-end pb-32 2xl:pb-48"
+            "relative px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
+            windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-0" : "h-full flex items-end pb-32 2xl:pb-48"
           )}>
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <img src="/backgrounds/sky-shine.webp" alt="" className="w-full h-full object-cover select-none" />
@@ -161,21 +162,24 @@ function App({ events }: { events: EventLocation[] }) {
             />
           </div>
  
-          <div className="absolute -bottom-[50px] left-0 w-full h-[120px] pointer-events-none">
+          {/* <div className="absolute -bottom-[50px] left-0 w-full h-[120px] pointer-events-none">
             <img
               src="/decorative/vines.webp"
               alt=""
               className="w-full h-full object-cover object-top select-none"
             />
-          </div>
+          </div> */}
           
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start xl:items-center w-full gap-8 pb-16 z-30 h-full pt-16 md:pt-0 md:h-auto">
+          <div className={clsx(
+            "flex flex-col md:flex-row justify-between items-center md:items-start xl:items-center w-full gap-8 z-30 pt-16 md:pt-0",
+            windowHeight > windowWidth && windowWidth < 860 ? "pb-32" : "pb-16 h-full md:h-auto"
+          )}>
             <div className={clsx(
               "flex flex-col gap-4 w-full md:w-[648px]",
               windowHeight > windowWidth && windowWidth < 860 && "justify-between h-full"
             )}>
               <div className="mb-6">
-                {windowWidth >= 400 && <FlagshipCTA className="min-[860px]:hidden -mt-12 mb-8" compact={windowWidth < 500} />}
+                {/* {windowWidth >= 400 && <FlagshipCTA className="min-[860px]:hidden -mt-12 mb-8" compact={windowWidth < 500} />} */}
 
                 <div className="flex items-center gap-3 mb-4 relative z-30">
                   <a href='https://hackclub.com' className='transition-transform hover:scale-105 active:scale-95'>
@@ -282,7 +286,7 @@ function App({ events }: { events: EventLocation[] }) {
               </div>
             </div>
 
-            <VideoEmbed className="hidden xl:block self-end mb-8" />
+            <MapEmbed className="hidden xl:block self-end mb-8 relative z-50" onOpenMap={() => setIsMapOpen(true)} />
           </div>
         </section>
 
@@ -299,8 +303,8 @@ function App({ events }: { events: EventLocation[] }) {
       </div>
 
       <section className="relative pb-96 bg-[url(/backgrounds/underwater-gradient.webp)] bg-cover bg-top">
-        <div className="xl:hidden pt-16 pb-8 relative z-10">
-          <VideoEmbed className="px-6" />
+        <div className="xl:hidden pt-16 pb-8 relative z-50">
+          <MapEmbed className="px-6 relative z-50 max-w-sm mx-auto" onOpenMap={() => setIsMapOpen(true)} />
         </div>
         <div className="pt-[8vw] xl:pt-[13vw]"></div>
         <div className="absolute top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-[#004b2a] to-transparent pointer-events-none"></div>
@@ -401,26 +405,39 @@ function App({ events }: { events: EventLocation[] }) {
         </div>
 
         <div id="letter" className="relative w-full h-full z-50 translate-y-20 min-[1200px]:translate-y-64 flex justify-center">
-          <div className='flex items-center min-[1200px]:relative'>
-            <img src='/compressed/backgrounds/world-map-left.webp' alt='' className='h-full hidden min-[1200px]:block' />
+          <img src='/compressed/backgrounds/world-map-left.webp' alt='' className='h-full hidden min-[1200px]:block' />
+          <div className='flex items-center min-[1200px]:block min-[1200px]:relative'>
             <img src='/backgrounds/world-map-right.webp' alt='' className='h-full hidden min-[1200px]:block' />
-            <div className='min-[1200px]:absolute min-[1200px]:inset-0 min-[1200px]:flex min-[1200px]:flex-col min-[1200px]:items-center min-[1200px]:justify-center min-[1200px]:gap-4'>
-              <svg viewBox="-20 -50 820 160" className="w-full max-w-2xl h-auto m-[-20px]">
-                <defs>
-                  <path id="curve" d="M0 70 C150 20, 300 0, 388 0 C476 0, 627 20, 777 70" fill="transparent" />
-                </defs>
-                <text 
-                  className="font-ember-and-fire font-bold"
-                  style={{ fill: '#A85C32', fontSize: '72px' }}
-                >
-                  <textPath href="#curve" startOffset="50%" textAnchor="middle">
-                    Campfires around the world!
-                  </textPath>
-                </text>
-              </svg>
-              <div className='max-w-3xl max-h-[400px] w-full h-full'>
-                <Map events={events} />
-              </div>
+            <div className='min-[1200px]:absolute min-[1200px]:top-0 min-[1200px]:left-0 py-12 min-[1200px]:py-16 min-[1200px]:pb-0 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.25)] min-[1200px]:rounded-none min-[1200px]:shadow-none min-[1200px]:pt-30 pl-6 min-[1200px]:pl-12 pr-6 min-[1200px]:pr-64 text-xl bg-[#EAD6BE] border-[#DCA87E] border-4 min-[1200px]:border-0 min-[1200px]:bg-transparent flex flex-col gap-6 font-solway'>
+              <h1>Dear hacker,</h1>
+              <p>
+                You can make a change: inspire someone to build a game for the first time, help someone
+                fall in love with computers, run an <i>incredible</i> game jam that you can invite all your
+                friends to. 
+              </p>
+
+              <p><b>This February, what if you organized a game jam in your city?</b></p>
+
+              <p>
+                Hack Club will provide guides, funding, merch, and 1-on-1 mentorship. Our goal?
+                Run 200 game jams in 200 cities worldwide. All on the same day. All run by high
+                schoolers like us.
+              </p>
+
+              <p>
+                To kick off 2026, we’re so excited to invite you to Campfire. In just a couple
+                months, you will learn how to raise money for your event, buy food and drinks
+                for your attendees, and make your own video games with your friends!
+              </p>
+
+              <p>
+                Let’s go on an adventure together.
+              </p>
+
+              <p>
+                With love, <br />
+                The Campfire Team
+              </p>
             </div>
           </div>
         </div>
@@ -698,6 +715,29 @@ function App({ events }: { events: EventLocation[] }) {
           </div>
         </div>
       </footer>
+
+      {isMapOpen && (
+        <div 
+          className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4"
+          onClick={() => setIsMapOpen(false)}
+        >
+          <div 
+            className="relative w-[90vw] h-[80vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setIsMapOpen(false)}
+              className="absolute -top-10 right-0 text-white text-3xl font-bold hover:opacity-70 cursor-pointer"
+            >
+              ✕
+            </button>
+            <Map 
+              events={events} 
+              className="w-full h-full rounded-2xl"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

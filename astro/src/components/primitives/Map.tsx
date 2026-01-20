@@ -23,7 +23,7 @@ export function Map({ events, center = [20, 0], zoom = 2, className }: MapProps)
     import('leaflet/dist/leaflet.css');
     Promise.all([import('leaflet'), import('react-leaflet')]).then(([L, module]) => {
       const flagIcon = L.icon({
-        iconUrl: '/map-flag.png',
+        iconUrl: '/map/map-flag.png',
         iconSize: [32, 32],
         iconAnchor: [16, 32],
         popupAnchor: [0, -32]
@@ -52,7 +52,12 @@ export function Map({ events, center = [20, 0], zoom = 2, className }: MapProps)
   function InvalidateSize() {
     const map = useMap();
     useEffect(() => {
-      setTimeout(() => map.invalidateSize(), 100);
+      const timer = setTimeout(() => map.invalidateSize(), 0);
+      const resizeTimer = setTimeout(() => map.invalidateSize(), 300);
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(resizeTimer);
+      };
     }, [map]);
     return null;
   }

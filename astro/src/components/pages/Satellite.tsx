@@ -3,7 +3,7 @@ import FaqButton from '../primitives/FaqButton.js';
 import Step from '../primitives/Step.js';
 import GameCard from '../primitives/GameCard.js';
 import NavbarLink from '../primitives/NavbarLink.tsx';
-import VideoEmbed from '../primitives/VideoEmbed.tsx';
+import VideoEmbed from '../primitives/MapEmbed.tsx';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import type { SatelliteContent } from '../../lib/satellite.ts';
