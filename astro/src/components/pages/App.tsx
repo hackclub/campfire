@@ -6,8 +6,10 @@ import StoryCard from '../primitives/StoryCard.js';
 import GameCard from '../primitives/GameCard.js';
 import NavbarLink from '../primitives/NavbarLink.tsx';
 import VideoEmbed from '../primitives/VideoEmbed.tsx';
+import { Map } from '../primitives/Map.tsx';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import type { EventLocation } from '../../lib/events.ts';
 
 const FORM_URL_ORGANIZER_APPLICATION = "https://forms.hackclub.com/t/8L51MzWyrHus";
 const FORM_URL_RSVP = "https://forms.hackclub.com/t/a3QSt8MuvHus";
@@ -49,7 +51,7 @@ function FlagshipCTA({ className, compact, maxWidth }: { className?: string; com
   );
 }
 
-function App() {
+function App({ events }: { events: EventLocation[] }) {
   const [email, setEmail] = useState("");
   const [scrollY, setScrollY] = useState(document.body.scrollTop);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1280);
@@ -399,39 +401,26 @@ function App() {
         </div>
 
         <div id="letter" className="relative w-full h-full z-50 translate-y-20 min-[1200px]:translate-y-64 flex justify-center">
-          <img src='/compressed/backgrounds/world-map-left.webp' alt='' className='h-full hidden min-[1200px]:block' />
-          <div className='flex items-center min-[1200px]:block min-[1200px]:relative'>
+          <div className='flex items-center min-[1200px]:relative'>
+            <img src='/compressed/backgrounds/world-map-left.webp' alt='' className='h-full hidden min-[1200px]:block' />
             <img src='/backgrounds/world-map-right.webp' alt='' className='h-full hidden min-[1200px]:block' />
-            <div className='min-[1200px]:absolute min-[1200px]:top-0 min-[1200px]:left-0 py-12 min-[1200px]:py-16 min-[1200px]:pb-0 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.25)] min-[1200px]:rounded-none min-[1200px]:shadow-none min-[1200px]:pt-30 pl-6 min-[1200px]:pl-12 pr-6 min-[1200px]:pr-64 text-xl bg-[#EAD6BE] border-[#DCA87E] border-4 min-[1200px]:border-0 min-[1200px]:bg-transparent flex flex-col gap-6 font-solway'>
-              <h1>Dear hacker,</h1>
-              <p>
-                You can make a change: inspire someone to build a game for the first time, help someone
-                fall in love with computers, run an <i>incredible</i> game jam that you can invite all your
-                friends to. 
-              </p>
-
-              <p><b>This February, what if you organized a game jam in your city?</b></p>
-
-              <p>
-                Hack Club will provide guides, funding, merch, and 1-on-1 mentorship. Our goal?
-                Run 200 game jams in 200 cities worldwide. All on the same day. All run by high
-                schoolers like us.
-              </p>
-
-              <p>
-                To kick off 2026, we’re so excited to invite you to Campfire. In just a couple
-                months, you will learn how to raise money for your event, buy food and drinks
-                for your attendees, and make your own video games with your friends!
-              </p>
-
-              <p>
-                Let’s go on an adventure together.
-              </p>
-
-              <p>
-                With love, <br />
-                The Campfire Team
-              </p>
+            <div className='min-[1200px]:absolute min-[1200px]:inset-0 min-[1200px]:flex min-[1200px]:flex-col min-[1200px]:items-center min-[1200px]:justify-center min-[1200px]:gap-4'>
+              <svg viewBox="-20 -50 820 160" className="w-full max-w-2xl h-auto m-[-20px]">
+                <defs>
+                  <path id="curve" d="M0 70 C150 20, 300 0, 388 0 C476 0, 627 20, 777 70" fill="transparent" />
+                </defs>
+                <text 
+                  className="font-ember-and-fire font-bold"
+                  style={{ fill: '#A85C32', fontSize: '72px' }}
+                >
+                  <textPath href="#curve" startOffset="50%" textAnchor="middle">
+                    Campfires around the world!
+                  </textPath>
+                </text>
+              </svg>
+              <div className='max-w-3xl max-h-[400px] w-full h-full'>
+                <Map events={events} />
+              </div>
             </div>
           </div>
         </div>

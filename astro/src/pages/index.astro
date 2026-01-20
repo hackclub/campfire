@@ -1,6 +1,10 @@
 ---
 import "../styles/global.css";
 import App from "../components/pages/App"
+
+import { loadEventsLoc } from "../lib/events";
+
+const events = await loadEventsLoc();
 ---
 
 <!doctype html>
@@ -35,6 +39,6 @@ import App from "../components/pages/App"
 
   </head>
   <body>
-    <App client:only="react" />
+    <App client:only="react" events={events} />
   </body>
 </html>
