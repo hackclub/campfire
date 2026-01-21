@@ -519,6 +519,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const SatelliteScalarFieldEnum = {
   id: 'id',
+  recordId: 'recordId',
   slug: 'slug',
   data: 'data',
   active: 'active',
