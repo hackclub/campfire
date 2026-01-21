@@ -56,11 +56,13 @@ class AirtableSyncWorker {
                 await prisma.satellite.upsert({
                     where: { slug },
                     update: {
+                        recordId: record.id,
                         data,
                         active: websiteActive,
                         updatedAt: new Date(),
                     },
                     create: {
+                        recordId: record.id,
                         slug,
                         data,
                         active: websiteActive,
