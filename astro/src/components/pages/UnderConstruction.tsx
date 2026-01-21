@@ -5,10 +5,11 @@ import clsx from 'clsx';
 const FORM_URL_SIGN_UP = "https://forms.hackclub.com/campfire-signup";
 
 interface UnderConstructionProps {
-    event_name?: string;
+    event_name: string;
+    record_id?: string;
 }
 
-function UnderConstruction({ event_name = "Shelburne" }: UnderConstructionProps) {
+function UnderConstruction({ event_name, record_id }: UnderConstructionProps) {
     const [email, setEmail] = useState("");
     const emailRef = useRef<HTMLInputElement>(null);
 
@@ -16,7 +17,7 @@ function UnderConstruction({ event_name = "Shelburne" }: UnderConstructionProps)
         if (!emailRef?.current?.reportValidity() || !email)
             return;
 
-        window.open(`${url}?email=${encodeURIComponent(email)}`, "_blank");
+        window.open(`${url}?email=${encodeURIComponent(email)}&event=${encodeURIComponent(record_id || "")}`, "_blank");
     }
 
     return (

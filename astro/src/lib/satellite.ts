@@ -18,21 +18,6 @@ export async function getSatelliteData(slug: string) {
   });
 }
 
-export async function setSatelliteData(slug: string, data: any) {
-  return prisma.satellite.upsert({
-    where: {
-      slug,
-    },
-    create: {
-      slug,
-      data,
-    },
-    update: {
-      data,
-    },
-  });
-}
-
 export type SatelliteContent = {
     hero: {
         title: string;
