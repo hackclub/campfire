@@ -15,6 +15,7 @@ datasource db {
 
 model Satellite {
   id        Int      @id @default(autoincrement())
+  recordId  String   @unique
   slug      String   @unique 
   data      Json
   active    Boolean  @default(true)
