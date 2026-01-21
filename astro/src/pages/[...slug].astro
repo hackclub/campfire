@@ -3,6 +3,7 @@ import "../styles/global.css";
 //@ts-ignore
 import Satellite from "../components/pages/Satellite";
 import { getSatelliteData, getSatelliteSlugs } from "../lib/satellite";
+import UnderConstruction from "../components/pages/UnderConstruction";
 
 export const prerender = false;
 const { slug } = Astro.params;
@@ -48,6 +49,7 @@ const satelliteData = await getSatelliteData(slug);
 
   </head>
   <body>
-    <Satellite client:only="react" slug={slug} content={satelliteData.data} />
+    {!satelliteData?.active && <UnderConstruction client:only="react" event_name={slug} />}
+    {satelliteData?.active && <Satellite client:only="react" slug={slug} content={satelliteData.data} />}
   </body>
 </html>

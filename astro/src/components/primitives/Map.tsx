@@ -79,7 +79,7 @@ export function Map({ events, center = [20, 0], zoom = 2, className }: MapProps)
         <Marker key={event.slug} position={[event.lat, event.long]} icon={flagIcon}>
           <Popup className="custom-popup">
             <div>
-              <h3 style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>{event.event_name}</h3>
+              <a href={`https://campfire.hackclub.com/${event.slug}`} className="text-black text-lg font-bold font-ember-and-fire">Campfire {event.event_name}</a>
             </div>
           </Popup>
         </Marker>

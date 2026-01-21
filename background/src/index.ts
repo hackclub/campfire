@@ -7,12 +7,12 @@ Airtable.configure({
     endpointUrl: 'https://api.airtable.com',
 });
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID!);
-const eventsTable = base('Event');
+const eventsTable = base('events');
 
 export async function listOfEventWebsiteData() {
     return (await eventsTable.select({
         view: 'Everything',
-        filterByFormula: '{website_active} = 1',
+        // filterByFormula: '{website_active} = 1',
         fields: [
             'slug', //string
             'website_json', //string
@@ -38,8 +38,8 @@ class AirtableSyncWorker {
             for (const record of records) {
                 const slug = record.get('slug') as string;
                 const websiteJson = record.get('website_json') as string;
-                const websiteActive = record.get('website_active') as boolean;
-
+                const websiteActive = record.get('website_active') === true;
+                
                 if (!slug) {
                     console.warn(`Skipping record ${record.id}: missing slug`);
                     continue;
@@ -67,7 +67,7 @@ class AirtableSyncWorker {
                     },
                 });
 
-                console.log(`✓ Synced: ${slug}`);
+                console.log(`✓ Synced: ${slug} - Active: ${websiteActive}`);
             }
 
             const inactiveCount = await prisma.satellite.updateMany({

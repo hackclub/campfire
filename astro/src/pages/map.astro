@@ -1,0 +1,27 @@
+---
+import "../styles/global.css";
+import { Map } from "../components/primitives/Map";
+import { loadEventsLoc } from "../lib/events";
+
+const events = await loadEventsLoc();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map - Hack Club Campfire</title>
+    
+    <!-- OpenGraph meta tags -->
+    <meta property="og:title" content="Campfire Map" />
+    <meta property="og:description" content="Find Campfire events happening around the world!" />
+    <meta property="og:image" content="/og-banner.png" />
+    <meta property="og:url" content="https://campfire.hackclub.com/map" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body class="w-screen h-screen">
+    <Map client:only="react" events={events} className="w-full h-full" />
+  </body>
+</html>
