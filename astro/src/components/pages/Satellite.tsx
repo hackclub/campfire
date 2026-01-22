@@ -187,7 +187,7 @@ const CONTENT = {
   }
 }
 
-function App({slug, content}: {slug: string | undefined, content: SatelliteContent}) {
+function App({slug, content, record_id}: {slug: string | undefined, content: SatelliteContent, record_id?: string}) {
   const [email, setEmail] = useState("");
   const [scrollY, setScrollY] = useState(document.body.scrollTop);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1280);
@@ -220,7 +220,7 @@ function App({slug, content}: {slug: string | undefined, content: SatelliteConte
     if (!emailRef?.current?.reportValidity() || !email)
       return;
 
-    window.open(`${url}?email=${encodeURIComponent(email)}`, "_blank");
+    window.open(`${url}?email=${encodeURIComponent(email)}&event=${encodeURIComponent(record_id || "")}`, "_blank");
   }
 
   return (
