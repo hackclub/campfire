@@ -102,22 +102,41 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
             <img src="/backgrounds/sky-shine.webp" alt="" className="w-full h-full object-cover select-none" />
           </div>
 
-          <div
-            className="absolute top-[180px] md:top-[200px] left-[20px] md:left-[80px] 2xl:left-[140px] pointer-events-none"
-            style={{
-              transform: isLargeScreen ? `translateY(${-scrollY / 12}px)` : undefined
-            }}
-          >
-            {/* fishy on top right of CAMPFIRE. His name is frederick. */}
-            <div className="absolute top-[-125px] md:top-[-165px] xl:top-[-185px] left-[140px] md:left-[260px] xl:left-[380px] w-[80px] md:w-[120px] xl:w-[150px]">
-              <img src="/compressed/characters/fish-2.webp" alt="Fish named Frederick" className="w-full h-full object-cover select-none" />
-            </div>
+          {content.event.venueCta ? (
+            <div
+              className="absolute top-[180px] md:top-[200px] left-[20px] md:left-[80px] 2xl:left-[140px] pointer-events-none"
+              style={{
+                transform: isLargeScreen ? `translateY(${-scrollY / 12}px)` : undefined
+              }}
+            >
+              {/* fishy on top right of CAMPFIRE. His name is frederick. */}
+              <div className="absolute top-[-125px] md:top-[-165px] xl:top-[-185px] left-[140px] md:left-[260px] xl:left-[380px] w-[80px] md:w-[120px] xl:w-[150px]">
+                <img src="/compressed/characters/fish-2.webp" alt="Fish named Frederick" className="w-full h-full object-cover select-none" />
+              </div>
 
-            {/* fishy inline with CAMPFIRE text. His name is gubson */}
-            <div className="absolute top-[-60px] md:top-[-80px] xl:top-[-70px] left-[210px] md:left-[360px] xl:left-[530px] w-[80px] md:w-[120px] xl:w-[150px]">
-              <img src="/compressed/characters/fish-1.webp" alt="Fish named Gubson" className="w-full h-full object-cover select-none" />
+              {/* fishy inline with CAMPFIRE text. His name is gubson */}
+              <div className="absolute top-[-60px] md:top-[-80px] xl:top-[-70px] left-[210px] md:left-[360px] xl:left-[530px] w-[80px] md:w-[120px] xl:w-[150px]">
+                <img src="/compressed/characters/fish-1.webp" alt="Fish named Gubson" className="w-full h-full object-cover select-none" />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div
+              className="absolute bottom-[32px] right-[40px] md:right-[140px] w-full h-full pointer-events-none"
+              style={{
+                transform: isLargeScreen ? `translateY(${-scrollY / 12}px)` : undefined
+              }}
+            >
+              {/* fishy on the right. His name is frederick. */}
+              <div className="absolute top-[128px] md:top-[96px] right-[-50px] md:right-[100px] w-1/3 md:w-[200px]">
+                <img src="/compressed/characters/fish-2.webp" alt="Fish named Frederick" className="w-full h-full object-cover select-none" />
+              </div>
+
+              {/* fishy on the left. His name is gubson */}
+              <div className="absolute top-[96px] md:top-[60px] right-[-10px] md:right-[300px] w-1/3 md:w-[200px]">
+                <img src="/compressed/characters/fish-1.webp" alt="Fish named Gubson" className="w-full h-full object-cover select-none" />
+              </div>
+            </div>
+          )}
 
           <div className="absolute bottom-0 left-0 w-full max-h-[120vh] overflow-hidden pointer-events-none md:animate-cloud-float-right">
             <img
@@ -185,7 +204,19 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
                   >
                     {content.localization.hero.subtitle}
                   </p>
-
+                  {!content.event.venueCta && (
+                    <p
+                      className="text-white text-4xl md:text-3xl xl:text-4xl font-bold mb-2 font-ember-and-fire"
+                      style={{
+                        textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
+                      }}
+                    >
+                      {content.localization.hero.hostedAt}
+                      <a href={content.event.venue.link} target="_blank" rel="noopener noreferrer" className="underline">
+                        {content.event.venue.name}
+                      </a>
+                    </p>
+                  )}
                   <p
                     className="text-white text-4xl md:text-3xl xl:text-4xl font-bold font-ember-and-fire"
                     style={{
@@ -243,35 +274,39 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
               </div>
             </div>
 
-            <div className="hidden xl:flex flex-col items-center gap-4 self-end mb-8">
-              {/* Venue Address Box */}
-              <div className="bg-[#f9e2ca] border-4 border-[#d5a16c] rounded-2xl px-8 py-6 min-w-[320px] min-h-[140px] shadow-lg relative z-30 flex items-center justify-center">
-                <div className="text-center">
-                  <h3 className="text-4xl font-bold text-[#854d16] mb-3 font-ember-and-fire">
-                    Venue
-                  </h3>
-                  {content.event.venue.link ? (
-                    <a
-                      href={content.event.venue.link}
-                      className="block text-xl font-sans text-[#854d16] hover:text-[#a36520] transition-colors underline decoration-2 underline-offset-4"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {content.event.venue.name}
-                    </a>
-                  ) : (
-                    <p className="text-xl font-sans text-[#854d16]">
-                      {content.event.venue.name}
-                    </p>
-                  )}
-                  {content.event.venue.link && (
-                    <p className="text-sm text-[#854d16]/70 mt-2 font-sans">Click for directions ⤴︎</p>
-                  )}
+            {content.event.venueCta ? (
+              <div className="hidden xl:flex flex-col items-center gap-4 self-end mb-8">
+                {/* Venue Address Box */}
+                <div className="bg-[#f9e2ca] border-4 border-[#d5a16c] rounded-2xl px-8 py-6 min-w-[320px] min-h-[140px] shadow-lg relative z-30 flex items-center justify-center">
+                  <div className="text-center">
+                    <h3 className="text-4xl font-bold text-[#854d16] mb-3 font-ember-and-fire">
+                      Venue
+                    </h3>
+                    {content.event.venue.link ? (
+                      <a
+                        href={content.event.venue.link}
+                        className="block text-xl font-sans text-[#854d16] hover:text-[#a36520] transition-colors underline decoration-2 underline-offset-4"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {content.event.venue.name}
+                      </a>
+                    ) : (
+                      <p className="text-xl font-sans text-[#854d16]">
+                        {content.event.venue.name}
+                      </p>
+                    )}
+                    {content.event.venue.link && (
+                      <p className="text-sm text-[#854d16]/70 mt-2 font-sans">Click for directions ⤴︎</p>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <MapEmbed onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel}/>
-            </div>
+                <MapEmbed onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel}/>
+              </div>
+            ) : (
+              <MapEmbed className="hidden xl:block self-end mb-8" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel}/>
+            )}
           </div>
         </section>
 
