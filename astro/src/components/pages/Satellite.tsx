@@ -243,12 +243,12 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
                 <div className='font-ember-and-fire text-white text-4xl pl-2 -translate-y-1 md:rotate-[-1.2deg]' style={{
                   textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
                 }}>
-                  {content.localization.hero.ctaSecondaryPrefix}<span
+                  {content.localization.hero.ctaSecondaryPrefix}<a
                     className='underline inline-block cursor-pointer transition-transform hover:scale-105 active:scale-95'
-                    onClick={() => openWithEmail(FORM_URL_RSVP)}
+                    href='https://flagship.hackclub.com?utm_source=campfire-website'
                   >
                     {content.localization.hero.ctaSecondary}
-                  </span>{content.localization.hero.ctaSecondarySuffix}
+                  </a>{content.localization.hero.ctaSecondarySuffix}
                 </div>
               </div>
             </div>
