@@ -13,7 +13,17 @@ import type { EventLocation } from '../../lib/airtable.ts';
 import EmailInput from '../primitives/EmailInput.tsx';
 import { openWithEmail } from '../../lib/email.ts';
 
-const FORM_URL_ORGANIZER_APPLICATION = "https://forms.hackclub.com/t/8L51MzWyrHus";
+const indonesianCities = [
+  "Bandung",
+  "Malang",
+  "Jakarta",
+  "Solo",
+  "Medan"
+];
+
+const isIndonesia = indonesianCities.some(city => window.location.pathname.toLowerCase().includes(city.toLowerCase()));
+
+const FORM_URL_ORGANIZER_APPLICATION = isIndonesia ? 'https://hack.club/cf-signup-indo' : "https://forms.hackclub.com/t/8L51MzWyrHus";
 const FORM_URL_RSVP = "https://forms.hackclub.com/t/a3QSt8MuvHus";
 const FORM_URL_SIGN_UP = "https://forms.hackclub.com/campfire-signup";
 
