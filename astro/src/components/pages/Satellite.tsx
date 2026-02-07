@@ -29,9 +29,9 @@ function FormattedText({ text }: { text: string }) {
 
 const FORM_URL_ORGANIZER_APPLICATION = "https://forms.hackclub.com/t/8L51MzWyrHus";
 const FORM_URL_RSVP = "https://forms.hackclub.com/t/a3QSt8MuvHus";
-const FORM_URL_SIGN_UP = "https://forms.hackclub.com/campfire-signup";
+//const FORM_URL_SIGN_UP = "https://forms.hackclub.com/campfire-signup";
 
-function App({slug, content, record_id}: {slug: string | undefined, content: SatelliteContent, record_id: string | undefined}) {
+function App({ slug, content, record_id }: { slug: string | undefined, content: SatelliteContent, record_id: string | undefined }) {
   const [email, setEmail] = useState("");
   const [scrollY, setScrollY] = useState(document.body.scrollTop);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1280);
@@ -39,6 +39,17 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
   const emailRef = useRef<HTMLInputElement>(null);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const indonesianCities = [
+    "Bandung",
+    "Malang",
+    "Jakarta",
+    "Solo",
+    "Medan"
+  ];
+
+  const isIndonesia = indonesianCities.some(city => (slug ?? '').toLowerCase().includes(city.toLowerCase()));
+  const FORM_URL_SIGN_UP = isIndonesia ? "https://airtable.com/appNV5AaqOvyDryyQ/pagnKfH2uqQOcbVb9/form" : "https://forms.hackclub.com/campfire-signup";
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -92,9 +103,9 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
         </header>
 
         <section className={clsx(
-            "relative min-h-[750px] px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
-            windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-0" : "h-full flex items-end pb-32 2xl:pb-48"
-          )}>
+          "relative min-h-[750px] px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
+          windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-0" : "h-full flex items-end pb-32 2xl:pb-48"
+        )}>
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <img src="/backgrounds/sky-shine.webp" alt="" className="w-full h-full object-cover select-none" />
           </div>
@@ -222,12 +233,12 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
                     />
                   </div>
 
-                  <button 
+                  <button
                     className="bg-[#fca147] border-[5px] border-[rgba(0,0,0,0.2)] rounded-[20px] px-8 md:px-14 py-4 hover:scale-105 transition-transform w-full md:w-auto transform md:rotate-[1.5deg] shadow-[0_8px_20px_rgba(0,0,0,0.25)] cursor-pointer active:scale-95"
                     type="button"
                     onClick={() => handleOpenWithEmail(FORM_URL_SIGN_UP)}
                   >
-                    <p 
+                    <p
                       className="text-[#8d3f34] text-3xl md:text-5xl font-normal font-dream-planner whitespace-nowrap"
                     >
                       {content.localization.hero.ctaPrimary}
@@ -248,7 +259,7 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
               </div>
             </div>
 
-            <MapEmbed className="hidden xl:block self-end mb-8" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel}/>
+            <MapEmbed className="hidden xl:block self-end mb-8" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel} />
           </div>
         </section>
 
@@ -266,7 +277,7 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
 
       <section className="relative pb-96 bg-[url(/backgrounds/underwater-gradient.webp)] bg-cover bg-top">
         <div className="xl:hidden pt-16 pb-8 relative z-50">
-          <MapEmbed className="px-6 relative z-50 max-w-sm mx-auto" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel}/>
+          <MapEmbed className="px-6 relative z-50 max-w-sm mx-auto" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel} />
         </div>
         <div className="pt-[8vw] xl:pt-[13vw]"></div>
         <div className="absolute top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-[#004b2a] to-transparent pointer-events-none"></div>
@@ -494,7 +505,7 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
               : (<></>)
           }
         </div>
-        
+
         <div className="scale-250 translate-y-80 pb-48 md:pb-0 md:translate-y-0 md:scale-105 left-0 w-full pointer-events-none">
           <img
             src="/decorative/puzzle-cloud-bottom.webp"
@@ -623,11 +634,11 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
       </footer>
 
       {isMapOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4"
           onClick={() => setIsMapOpen(false)}
         >
-          <div 
+          <div
             className="relative w-[90vw] h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -637,8 +648,8 @@ function App({slug, content, record_id}: {slug: string | undefined, content: Sat
             >
               ✕
             </button>
-            <iframe 
-              src="/map" 
+            <iframe
+              src="/map"
               className="w-full h-full rounded-2xl"
             />
           </div>
