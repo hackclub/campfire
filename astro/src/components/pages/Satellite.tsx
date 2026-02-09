@@ -29,9 +29,10 @@ function FormattedText({ text }: { text: string }) {
 
 const FORM_URL_ORGANIZER_APPLICATION = "https://forms.hackclub.com/t/8L51MzWyrHus";
 const FORM_URL_RSVP = "https://forms.hackclub.com/t/a3QSt8MuvHus";
-//const FORM_URL_SIGN_UP = "https://forms.hackclub.com/campfire-signup";
+const FORM_URL_SIGN_UP = "https://forms.hackclub.com/campfire-signup";
 
-function App({ slug, content, record_id }: { slug: string | undefined, content: SatelliteContent, record_id: string | undefined }) {
+function App({slug, content, record_id, signupUrl, webSignupOverride}: {slug: string | undefined, content: SatelliteContent, record_id: string | undefined, signupUrl?: string | null, webSignupOverride?: string | null}) {
+  const effectiveSignupUrl = webSignupOverride || signupUrl || FORM_URL_SIGN_UP;
   const [email, setEmail] = useState("");
   const [scrollY, setScrollY] = useState(document.body.scrollTop);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1280);
@@ -39,17 +40,6 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
   const emailRef = useRef<HTMLInputElement>(null);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const indonesianCities = [
-    "Bandung",
-    "Malang",
-    "Jakarta",
-    "Solo",
-    "Medan"
-  ];
-
-  const isIndonesia = indonesianCities.some(city => (slug ?? '').toLowerCase().includes(city.toLowerCase()));
-  const FORM_URL_SIGN_UP = isIndonesia ? "https://airtable.com/appNV5AaqOvyDryyQ/pagnKfH2uqQOcbVb9/form" : "https://forms.hackclub.com/campfire-signup";
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -103,9 +93,9 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
         </header>
 
         <section className={clsx(
-          "relative min-h-[750px] px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
-          windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-0" : "h-full flex items-end pb-32 2xl:pb-48"
-        )}>
+            "relative min-h-[750px] px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
+            windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-0" : "h-full flex items-end pb-32 2xl:pb-48"
+          )}>
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <img src="/backgrounds/sky-shine.webp" alt="" className="w-full h-full object-cover select-none" />
           </div>
@@ -229,16 +219,16 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder={content.localization.hero.emailPlaceholder}
-                      onSubmit={() => handleOpenWithEmail(FORM_URL_SIGN_UP)}
+                      onSubmit={() => handleOpenWithEmail(effectiveSignupUrl)}
                     />
                   </div>
 
-                  <button
+                  <button 
                     className="bg-[#fca147] border-[5px] border-[rgba(0,0,0,0.2)] rounded-[20px] px-8 md:px-14 py-4 hover:scale-105 transition-transform w-full md:w-auto transform md:rotate-[1.5deg] shadow-[0_8px_20px_rgba(0,0,0,0.25)] cursor-pointer active:scale-95"
                     type="button"
-                    onClick={() => handleOpenWithEmail(FORM_URL_SIGN_UP)}
+                    onClick={() => handleOpenWithEmail(effectiveSignupUrl)}
                   >
-                    <p
+                    <p 
                       className="text-[#8d3f34] text-3xl md:text-5xl font-normal font-dream-planner whitespace-nowrap"
                     >
                       {content.localization.hero.ctaPrimary}
@@ -259,7 +249,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
               </div>
             </div>
 
-            <MapEmbed className="hidden xl:block self-end mb-8" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel} />
+            <MapEmbed className="hidden xl:block self-end mb-8" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel}/>
           </div>
         </section>
 
@@ -277,7 +267,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
 
       <section className="relative pb-96 bg-[url(/backgrounds/underwater-gradient.webp)] bg-cover bg-top">
         <div className="xl:hidden pt-16 pb-8 relative z-50">
-          <MapEmbed className="px-6 relative z-50 max-w-sm mx-auto" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel} />
+          <MapEmbed className="px-6 relative z-50 max-w-sm mx-auto" onOpenMap={() => setIsMapOpen(true)} label={content.localization.hero.mapLabel}/>
         </div>
         <div className="pt-[8vw] xl:pt-[13vw]"></div>
         <div className="absolute top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-[#004b2a] to-transparent pointer-events-none"></div>
@@ -323,6 +313,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
         <div id="steps" className="relative z-40 flex flex-col gap-24 items-center px-12 max-w-7xl mx-auto pt-12 md:pt-0">
           <Step
             stepNumber={1}
+            stepLabel={content.localization.steps.stepLabel ?? "Step"}
             imageSrc="/compressed/ui/step-signup.jpeg"
             imageAlt="Step 1"
           >
@@ -331,6 +322,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
 
           <Step
             stepNumber={2}
+            stepLabel={content.localization.steps.stepLabel ?? "Step"}
             imageSrc="/compressed/ui/step-team.webp"
             imageAlt="Step 2"
             isReversed={true}
@@ -340,6 +332,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
 
           <Step
             stepNumber={3}
+            stepLabel={content.localization.steps.stepLabel ?? "Step"}
             imageSrc="/compressed/ui/step-workshops.webp"
             imageAlt="Step 3"
           >
@@ -348,6 +341,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
 
           <Step
             stepNumber={4}
+            stepLabel={content.localization.steps.stepLabel ?? "Step"}
             imageSrc="/compressed/ui/step-build.webp"
             imageAlt="Step 4"
             isReversed={true}
@@ -410,10 +404,10 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
           />
         </div>
 
-        <div className="relative z-20 flex flex-col gap-12 items-center px-6 md:px-24 w-full max-w-6xl mx-auto mb-100">
+        <div className="relative z-20 flex flex-col gap-12 items-center px-4 md:px-24 w-full max-w-6xl mx-auto mb-100">
           <div
             id="schedule"
-            className="relative w-full bg-[#3154B9] rounded-xl border-4 border-[#7B9FF5] p-8 md:p-16 min-h-[500px] shadow-[0_8px_20px_rgba(0,0,0,0.25)]"
+            className="relative w-full bg-[#3154B9] rounded-xl border-4 border-[#7B9FF5] px-4 py-8 md:p-16 min-h-[500px] shadow-[0_8px_20px_rgba(0,0,0,0.25)]"
           >
             <h2
               className="text-[#FFD999] text-6xl md:text-7xl font-bold text-center mb-4 font-ember-and-fire relative z-10"
@@ -427,7 +421,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
                   <h3 className="text-[#FFD999] text-2xl md:text-3xl font-bold font-ember-and-fire mb-4">
                     {day.date}
                   </h3>
-                  <div className="overflow-hidden rounded-lg">
+                  <div className="rounded-lg overflow-hidden">
                     <table className="w-full border-collapse">
                       <tbody>
                         {day.items.map((item, itemIndex) => (
@@ -435,10 +429,10 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
                             key={itemIndex}
                             className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all"
                           >
-                            <td className="p-4 text-white text-lg md:text-xl font-solway">
+                            <td className="px-2 py-4 md:p-4 text-white text-xs md:text-lg md:text-xl font-solway">
                               {item.activity}
                             </td>
-                            <td className="p-4 text-[#FFD999] text-xl md:text-2xl font-bold font-solway whitespace-nowrap w-1/3 text-right">
+                            <td className="px-2 py-4 md:p-4 text-[#FFD999] text-xs md:text-xl md:text-2xl font-bold font-solway whitespace-nowrap w-1/3 text-right">
                               {item.time}
                             </td>
                           </tr>
@@ -504,8 +498,49 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
                 </div>)
               : (<></>)
           }
-        </div>
 
+          {(content.event.contactUs?.email || content.event.contactUs?.instagram || content.event.contactUs?.linkedin) && (
+            <div className="mt-16 text-center">
+              <h2
+                className="text-[#f1ebff] text-4xl md:text-5xl font-bold mb-4 font-ember-and-fire"
+                style={{ textShadow: "0px 4px 4px rgba(0,0,0,0.25)" }}
+              >
+                Contact Us
+              </h2>
+              <div className="flex flex-wrap justify-center gap-6 items-center">
+                {content.event.contactUs.email && (
+                  <a
+                    href={`mailto:${content.event.contactUs.email}`}
+                    className="text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
+                  >
+                    {content.event.contactUs.email}
+                  </a>
+                )}
+                {content.event.contactUs.instagram && (
+                  <a
+                    href={`https://instagram.com/${content.event.contactUs.instagram.replace(/^@/, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
+                  >
+                    @{content.event.contactUs.instagram.replace(/^@/, '')}
+                  </a>
+                )}
+                {content.event.contactUs.linkedin && (
+                  <a
+                    href={content.event.contactUs.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
+                  >
+                    LinkedIn
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+        
         <div className="scale-250 translate-y-80 pb-48 md:pb-0 md:translate-y-0 md:scale-105 left-0 w-full pointer-events-none">
           <img
             src="/decorative/puzzle-cloud-bottom.webp"
@@ -558,7 +593,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
                     {q.answer}
                   </FaqQuestion>
                 ))}
-                <FaqButton content={content.event.faq.participant.buttonText} />
+                <FaqButton href={content.event.faq.participant.buttonLink} content={content.event.faq.participant.buttonText} />
               </div>
             </div>
 
@@ -585,7 +620,7 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
                       {q.answer}
                     </FaqQuestion>
                   ))}
-                  <FaqButton href={FORM_URL_ORGANIZER_APPLICATION} content={content.event.faq.organizer.buttonText} />
+                  <FaqButton href={content.event.faq.organizer.buttonLink ?? FORM_URL_ORGANIZER_APPLICATION} content={content.event.faq.organizer.buttonText} />
                 </div>
               </div>
             )}
@@ -634,11 +669,11 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
       </footer>
 
       {isMapOpen && (
-        <div
+        <div 
           className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4"
           onClick={() => setIsMapOpen(false)}
         >
-          <div
+          <div 
             className="relative w-[90vw] h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -648,8 +683,8 @@ function App({ slug, content, record_id }: { slug: string | undefined, content: 
             >
               ✕
             </button>
-            <iframe
-              src="/map"
+            <iframe 
+              src="/map" 
               className="w-full h-full rounded-2xl"
             />
           </div>
