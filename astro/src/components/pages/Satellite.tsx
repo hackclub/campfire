@@ -5,6 +5,7 @@ import GameCard from '../primitives/GameCard.js';
 import NavbarLink from '../primitives/NavbarLink.tsx';
 import MapEmbed from '../primitives/MapEmbed.tsx';
 import { useEffect, useRef, useState } from 'react';
+import { Mail, Instagram, Linkedin } from 'lucide-react';
 import clsx from 'clsx';
 import type { SatelliteContent } from '../../lib/satellite.ts';
 import EmailInput from '../primitives/EmailInput.tsx';
@@ -511,8 +512,9 @@ function App({slug, content, record_id, signupUrl, webSignupOverride}: {slug: st
                 {content.event.contactUs.email && (
                   <a
                     href={`mailto:${content.event.contactUs.email}`}
-                    className="text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
+                    className="flex items-center gap-2 text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
                   >
+                    <Mail className="shrink-0" size={24} />
                     {content.event.contactUs.email}
                   </a>
                 )}
@@ -521,8 +523,9 @@ function App({slug, content, record_id, signupUrl, webSignupOverride}: {slug: st
                     href={`https://instagram.com/${content.event.contactUs.instagram.replace(/^@/, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
+                    className="flex items-center gap-2 text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
                   >
+                    <Instagram className="shrink-0" size={24} />
                     @{content.event.contactUs.instagram.replace(/^@/, '')}
                   </a>
                 )}
@@ -531,8 +534,9 @@ function App({slug, content, record_id, signupUrl, webSignupOverride}: {slug: st
                     href={content.event.contactUs.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
+                    className="flex items-center gap-2 text-xl md:text-2xl text-[#f1ebff] underline hover:text-white transition-colors font-solway"
                   >
+                    <Linkedin className="shrink-0" size={24} />
                     LinkedIn
                   </a>
                 )}
