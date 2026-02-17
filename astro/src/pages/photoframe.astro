@@ -1,0 +1,61 @@
+---
+import "../styles/global.css";
+import { PhotoEditor } from "../components/photoframe/PhotoEditor";
+import { loadEventsLoc } from "../lib/airtable";
+import { Terminal } from "lucide-react";
+
+const events = await loadEventsLoc();
+
+const campfires = events.map(event => ({
+    eventName: event.event_name,
+    city: event.city || event.event_name
+}));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hack Club Campfire Frame</title>
+    
+    <!-- OpenGraph meta tags -->
+    <meta property="og:title" content="Hack Club Campfire Frame" />
+    <meta property="og:description" content="Show the world that you're joining Campfire!" />
+    <meta property="og:image" content="/og-banner.png" />
+    <meta property="og:url" content="https://campfire.hackclub.com/photoframe" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hack Club Campfire" />
+  </head>
+  <body class="bg-campfire-orange min-h-screen flex flex-col items-center w-full m-0 p-0">
+    <div class="min-h-screen text-white flex flex-col items-center w-full">
+      {/* Header */}
+      <header class="w-full p-6 flex flex-col items-center gap-4 mt-8">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm border border-stone-200">
+            <Terminal size={28} className="text-campfire-orange" />
+          </div>
+          <h1 class="dream-font text-3xl md:text-5xl text-white font-normal uppercase tracking-wide drop-shadow-md text-center">
+            Campfire Frame
+          </h1>
+        </div>
+        <p class="text-white/80 text-center max-w-md font-medium text-lg">
+          Show the world that you're joining Campfire! <br />
+        </p>
+      </header>
+
+      {/* Main Content */}
+      <main class="w-full max-w-4xl px-4 pb-12">
+        <PhotoEditor client:only="react" initialCampfires={campfires} />
+      </main>
+
+      {/* Footer */}
+      <footer class="w-full p-6 text-center text-white/60 text-sm">
+        <p class="flex items-center justify-center gap-2">
+          Made with ❤️ By <a href='https://rohanghalib.com' class="underline hover:text-white">Rohan Ghalib</a> for Hack Club
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

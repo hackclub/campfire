@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { Map } from "../components/primitives/Map";
+import { Map as CampfireMap } from "../components/primitives/Map";
 import { loadEventsLoc } from "../lib/airtable";
 
 export const prerender = false;
@@ -24,6 +24,6 @@ const events = await loadEventsLoc();
     <meta property="og:type" content="website" />
   </head>
   <body class="w-screen h-screen">
-    <Map client:only="react" events={events} className="w-full h-full" />
+    <CampfireMap client:only="react" events={events} className="w-full h-full" />
   </body>
 </html>

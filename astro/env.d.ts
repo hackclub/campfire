@@ -8,3 +8,9 @@ declare namespace App {
         session: import("better-auth").Session | null;
     }
 }
+
+interface Window {
+    plausible: (event: string, options?: any) => void;
+}
+
+declare var plausible: (event: string, options?: any) => void;
