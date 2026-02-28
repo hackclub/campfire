@@ -56,21 +56,24 @@ function parseRecord(record: Airtable.Record<Airtable.FieldSet>) {
     let data: any;
     try {
         data = websiteJson ? JSON.parse(websiteJson) : {};
-        
-        if (websiteActive) {
-            if (data.version !== VERSION) {
-                data = { error: "Your JSON is outdated. Please update it!" };
-            } else {
-                const validationErrors = validateSatelliteContent(data);
-                if (validationErrors.length > 0) {
-                    console.error(`Validation errors for slug ${slug}: ${validationErrors.join(', ')}`);
-                    data = { error: `Invalid JSON structure: ${validationErrors.join(', ')}` };
-                }
-            }
-        }
     } catch (error) {
         console.error(`Error parsing JSON for slug ${slug}: ${error}`);
         data = { error: "Error parsing JSON. Make sure the JSON is valid!" };
+    }
+
+    if (websiteActive && !data.error) {
+        try {
+            const validationErrors = validateSatelliteContent(data);
+            if (validationErrors.length > 0) {
+                console.error(`Validation errors for slug ${slug}: ${validationErrors.join(', ')}`);
+                data = { error: `Invalid JSON structure: ${validationErrors.join(', ')}` };
+            } else if (data.version !== VERSION) {
+                data = { error: "Your JSON is outdated. Please update it!" };
+            }
+        } catch (error) {
+            console.error(`Unexpected validation error for slug ${slug}: ${error}`);
+            data = { error: "Unexpected error during validation." };
+        }
     }
 
     if (status === 'Canceled') {
