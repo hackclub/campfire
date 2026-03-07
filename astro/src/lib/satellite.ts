@@ -232,6 +232,7 @@ export type SatelliteContent = {
             name: string;
             link: string;
         };
+        venueCta?: boolean;
         schedule: {
             days: {
                 date: string;
