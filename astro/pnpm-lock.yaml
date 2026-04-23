@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@astrojs/node':
-        specifier: ^9.5.1
-        version: 9.5.2(astro@5.16.12(@types/node@25.0.10)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.3))
+        specifier: ^10.0.5
+        version: 10.0.5(astro@5.16.12(@types/node@25.0.10)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.3))
       '@astrojs/react':
         specifier: ^4.4.2
         version: 4.4.2(@types/node@25.0.10)(@types/react-dom@19.2.3(@types/react@19.2.9))(@types/react@19.2.9)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tsx@4.21.0)
@@ -53,6 +53,9 @@ importers:
       lockfile:
         specifier: ^1.0.4
         version: 1.0.4
+      lucide-react:
+        specifier: ^0.564.0
+        version: 0.564.0(react@19.2.3)
       react:
         specifier: ^19.2.1
         version: 19.2.3
@@ -93,13 +96,16 @@ packages:
   '@astrojs/internal-helpers@0.7.5':
     resolution: {integrity: sha512-vreGnYSSKhAjFJCWAwe/CNhONvoc5lokxtRoZims+0wa3KbHBdPHSSthJsKxPd8d/aic6lWKpRTYGY/hsgK6EA==}
 
+  '@astrojs/internal-helpers@0.8.0':
+    resolution: {integrity: sha512-J56GrhEiV+4dmrGLPNOl2pZjpHXAndWVyiVDYGDuw6MWKpBSEMLdFxHzeM/6sqaknw9M+HFfHZAcvi3OfT3D/w==}
+
   '@astrojs/markdown-remark@6.3.10':
     resolution: {integrity: sha512-kk4HeYR6AcnzC4QV8iSlOfh+N8TZ3MEStxPyenyCtemqn8IpEATBFMTJcfrNW32dgpt6MY3oCkMM/Tv3/I4G3A==}
 
-  '@astrojs/node@9.5.2':
-    resolution: {integrity: sha512-85/x+FRwbNGDip1TzSGMiak31/6LvBhA8auqd9lLoHaM5XElk+uIfIr3KjJqucDojE0PtiLk1lMSwD9gd3YlGg==}
+  '@astrojs/node@10.0.5':
+    resolution: {integrity: sha512-rgZiU9nD7zmM3fdmOVuobcNHAyXWx2HXXDLTuxjVCTQ+QmHmL5zkZZhNIL5NjlQtDRAU1i5fVaXp7nAKdET30w==}
     peerDependencies:
-      astro: ^5.14.3
+      astro: ^6.0.0
 
   '@astrojs/prism@3.3.0':
     resolution: {integrity: sha512-q8VwfU/fDZNoDOf+r7jUnMC2//H2l0TuQ6FkGJL8vD8nw/q5KiL3DS1KKBI3QhI9UQhpJ5dc7AtqfbXWuOgLCQ==}
@@ -1902,6 +1908,11 @@ packages:
     resolution: {integrity: sha512-Lkk/vx6ak3rYkRR0Nhu4lFUT2VDnQSxBe8Hbl7f36358p6ow8Bnvr8lrLt98H8J1aGxfhbX4Fs5tYg2+FTwr5Q==}
     engines: {bun: '>=1.0.0', deno: '>=1.30.0', node: '>=8.0.0'}
 
+  lucide-react@0.564.0:
+    resolution: {integrity: sha512-JJ8GVTQqFwuliifD48U6+h7DXEHdkhJ/E87kksGByII3qHxtPciVb8T8woQONHBQgHVOl7rSMrrip3SeVNy7Fg==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
@@ -2196,12 +2207,16 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
-  picomatch@2.3.1:
-    resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
+  picomatch@2.3.2:
+    resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
     engines: {node: '>=8.6'}
 
   picomatch@4.0.3:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
+    engines: {node: '>=12'}
+
+  picomatch@4.0.4:
+    resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
     engines: {node: '>=12'}
 
   pkg-types@2.3.0:
@@ -2816,6 +2831,10 @@ snapshots:
 
   '@astrojs/internal-helpers@0.7.5': {}
 
+  '@astrojs/internal-helpers@0.8.0':
+    dependencies:
+      picomatch: 4.0.4
+
   '@astrojs/markdown-remark@6.3.10':
     dependencies:
       '@astrojs/internal-helpers': 0.7.5
@@ -2842,9 +2861,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@9.5.2(astro@5.16.12(@types/node@25.0.10)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.3))':
+  '@astrojs/node@10.0.5(astro@5.16.12(@types/node@25.0.10)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.3))':
     dependencies:
-      '@astrojs/internal-helpers': 0.7.5
+      '@astrojs/internal-helpers': 0.8.0
       astro: 5.16.12(@types/node@25.0.10)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.3)(tsx@4.21.0)(typescript@5.9.3)
       send: 1.2.1
       server-destroy: 1.0.1
@@ -3787,7 +3806,7 @@ snapshots:
   anymatch@3.1.3:
     dependencies:
       normalize-path: 3.0.0
-      picomatch: 2.3.1
+      picomatch: 2.3.2
 
   argparse@2.0.1: {}
 
@@ -4551,6 +4570,10 @@ snapshots:
 
   lru.min@1.1.3: {}
 
+  lucide-react@0.564.0(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+
   magic-string@0.30.21:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -5027,9 +5050,11 @@ snapshots:
 
   picocolors@1.1.1: {}
 
-  picomatch@2.3.1: {}
+  picomatch@2.3.2: {}
 
   picomatch@4.0.3: {}
+
+  picomatch@4.0.4: {}
 
   pkg-types@2.3.0:
     dependencies:
