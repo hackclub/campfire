@@ -10,9 +10,9 @@
     "sync:once": "tsx -e \"import('./src/lib/airtable.js').then(m => m.airtableSyncWorker.syncEvents())\""
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.1",
+    "@astrojs/node": "^10.1.4",
     "@astrojs/react": "^4.4.2",
-    "@astrojs/svelte": "^7.2.3",
+    "@astrojs/svelte": "^8.1.2",
     "@prisma/adapter-pg": "7.1.0",
     "@prisma/client": "7.1.0",
     "@prisma/config": "7.1.0",
