@@ -13,6 +13,5 @@ ENV NODE_ENV=production
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN bunx prisma generate
-RUN bunx prisma migrate deploy
 
-CMD ["bun", "run", "start"]
+CMD ["sh", "-c", "bunx prisma migrate deploy && bun run start"]
