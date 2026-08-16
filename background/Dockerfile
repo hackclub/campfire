@@ -4,7 +4,7 @@ FROM base AS deps
 WORKDIR /app
 COPY package.json bun.lock ./
 COPY prisma ./prisma
-RUN bun install --frozen-lockfile
+RUN bun install --frozen-lockfile --backend=copyfile
 
 FROM base AS runner
 WORKDIR /app
