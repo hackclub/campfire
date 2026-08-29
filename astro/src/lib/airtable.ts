@@ -13,6 +13,7 @@ export interface EventLocation {
 	lat: number;
 	long: number;
 	event_name: string;
+	city: string;
 }
 
 interface AirtableRecord {
@@ -34,7 +35,8 @@ export async function fetchEventsLoc() {
             'lat', //number
             'long', //number
             'website_active', //boolean
-			'Status' // Canceled | Active
+			'Status', // Canceled | Active
+			'city'
         ]
     }).all()) as AirtableRecord[]
 }

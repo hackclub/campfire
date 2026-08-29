@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'DreamPlanner';
+  src: url('/dreamplanner.otf') format('opentype'),
+    url('/DreamPlanner.otf') format('opentype'),
+    url('/dreamplanner.ttf') format('truetype'),
+    url('/DreamPlanner.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.dream-font {
+  font-family: 'DreamPlanner', sans-serif !important;
+  letter-spacing: normal !important;
+  line-height: 0.8 !important;
+}
+
+/* Campfire v2 Aesthetic */
+.campfire-card {
+  background-color: white;
+  border-radius: 1.5rem;
+  /* rounded-3xl */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.campfire-btn-primary {
+  background-color: #ff8c37;
+  color: white;
+  border-bottom: 4px solid #e67e22;
+  transition: all 0.1s;
+}
+
+.campfire-btn-primary:active {
+  transform: translateY(2px);
+  border-bottom-width: 0px;
+  margin-top: 2px;
+}
+
+.campfire-input {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  border-radius: 0.75rem;
+  /* rounded-xl */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1;
+  font-weight: 400;
+
+  color-scheme: dark;
+  /* Default to dark mode for Campfire theme */
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #1a1a1a;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100vh;
+  background-color: #ff8c37;
+  /* Campfire Orange */
+}

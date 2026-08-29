@@ -6,7 +6,7 @@ import StoryCard from '../primitives/StoryCard.js';
 import GameCard from '../primitives/GameCard.js';
 import NavbarLink from '../primitives/NavbarLink.tsx';
 import MapEmbed from '../primitives/MapEmbed.tsx';
-import { Map } from '../primitives/Map.tsx';
+import { Map as CampfireMap } from '../primitives/Map.tsx';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import type { EventLocation } from '../../lib/airtable.ts';
@@ -79,7 +79,7 @@ function App({ events }: { events: EventLocation[] }) {
     document.addEventListener("scroll", () => {
       setScrollY(window.scrollY);
     });
-    
+
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1280);
       setWindowHeight(window.innerHeight);
@@ -104,8 +104,8 @@ function App({ events }: { events: EventLocation[] }) {
   return (
     <div className="w-full min-h-screen flex flex-col overflow-x-hidden">
       <div className="absolute -top-16 -left-8 w-1/3 z-20 pointer-events-none hidden min-[860px]:block">
-        <img 
-          src="/compressed/backgrounds/corner-cloud.webp" 
+        <img
+          src="/compressed/backgrounds/corner-cloud.webp"
           alt=""
           className="w-full h-full object-cover select-none transform -rotate-12"
         />
@@ -124,9 +124,9 @@ function App({ events }: { events: EventLocation[] }) {
         </header>
 
         <section className={clsx(
-            "relative min-h-[700px] px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
-            windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-0" : "h-full flex items-end pb-32 2xl:pb-48"
-          )}>
+          "relative min-h-[700px] px-6 md:px-16 md:px-24 2xl:px-32 bg-[url(/backgrounds/blue-sky.webp)] bg-center bg-cover",
+          windowHeight > windowWidth && windowWidth < 860 ? "flex items-stretch pb-0" : "h-full flex items-end pb-32 2xl:pb-48"
+        )}>
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <img src="/backgrounds/sky-shine.webp" alt="" className="w-full h-full object-cover select-none" />
           </div>
@@ -158,7 +158,7 @@ function App({ events }: { events: EventLocation[] }) {
               }}
             />
           </div>
- 
+
           {/* <div className="absolute -bottom-[50px] left-0 w-full h-[120px] pointer-events-none">
             <img
               src="/decorative/vines.webp"
@@ -166,7 +166,7 @@ function App({ events }: { events: EventLocation[] }) {
               className="w-full h-full object-cover object-top select-none"
             />
           </div> */}
-          
+
           <div className={clsx(
             "flex flex-col md:flex-row justify-between items-center md:items-start xl:items-center w-full gap-8 z-30 pt-16 md:pt-0",
             windowHeight > windowWidth && windowWidth < 860 ? "pb-32" : "pb-16 h-full md:h-auto"
@@ -180,32 +180,32 @@ function App({ events }: { events: EventLocation[] }) {
 
                 <div className="flex items-center gap-3 mb-4 relative z-30">
                   <a href='https://hackclub.com' className='transition-transform hover:scale-105 active:scale-95'>
-                    <img 
-                      src="/decorative/flag-standalone-wtransparent.png" 
-                      alt="Hack Club" 
+                    <img
+                      src="/decorative/flag-standalone-wtransparent.png"
+                      alt="Hack Club"
                       className="w-[151px] h-[53px] object-cover transform rotate-[-4.8deg] select-none"
-                      style={{ 
+                      style={{
                         filter: "drop-shadow(3px 3px 0px rgba(0,0,0,0.25))"
                       }}
                     />
                   </a>
                   <div className="w-[2px] h-8 bg-white opacity-60"></div>
                   <a href='https://opensauce.com' className='transition-transform scale-125 hover:scale-130 active:scale-130'>
-                    <img 
-                      src="/branding/logo-opensauce.webp" 
-                      alt="Open Sauce" 
+                    <img
+                      src="/branding/logo-opensauce.webp"
+                      alt="Open Sauce"
                       className="h-[70px] object-contain select-none pl-4"
-                      style={{ 
+                      style={{
                         filter: "drop-shadow(3px 3px 0px rgba(0,0,0,0.25))"
                       }}
                     />
                   </a>
                 </div>
-                
+
                 <div className="transform md:rotate-[-2.97deg]">
-                  <h1 
+                  <h1
                     className="text-[#fcf5ed] text-[80px] md:text-[100px] xl:text-[150px] font-normal leading-none mb-4 font-dream-planner"
-                    style={{ 
+                    style={{
                       textShadow: "5px 8px 0px rgba(0,0,0,0.25)"
                     }}
                   >
@@ -214,17 +214,17 @@ function App({ events }: { events: EventLocation[] }) {
                 </div>
 
                 <div className="pl-2 md:pl-4">
-                  <p 
+                  <p
                     className="text-white text-4xl md:text-3xl xl:text-4xl font-bold mb-2 font-ember-and-fire"
-                    style={{ 
+                    style={{
                       textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
                     }}
                   >
                     Game jam for high schoolers in 200+ cities
                   </p>
-                  <p 
+                  <p
                     className="text-white text-4xl md:text-3xl xl:text-4xl font-bold font-ember-and-fire"
-                    style={{ 
+                    style={{
                       textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
                     }}
                   >
@@ -235,7 +235,7 @@ function App({ events }: { events: EventLocation[] }) {
 
               <div className='flex flex-col gap-4'>
                 <div className="flex flex-col md:flex-row items-center gap-2">
-                  <div 
+                  <div
                     className={clsx(
                       "bg-[#f9e2ca] border-4 border-[#d5a16c] rounded-[20px] px-4 md:px-8 py-4 flex items-center gap-3 md:gap-6 w-full transform md:rotate-[-1.2deg] shadow-[0_8px_20px_rgba(0,0,0,0.25)]",
                       "transition-transform hover:scale-105"
@@ -250,16 +250,16 @@ function App({ events }: { events: EventLocation[] }) {
                       onSubmit={() => handleOpenWithEmail(FORM_URL_SIGN_UP)}
                     />
                   </div>
-                  
-                  <button 
+
+                  <button
                     className="bg-[#fca147] border-[5px] border-[rgba(0,0,0,0.2)] rounded-[20px] px-8 md:px-14 py-4 hover:scale-105 transition-transform w-full md:w-auto transform md:rotate-[1.5deg] shadow-[0_8px_20px_rgba(0,0,0,0.25)] cursor-pointer active:scale-95"
                     type="button"
                     onClick={() => handleOpenWithEmail(FORM_URL_SIGN_UP)}
                   >
-                    <p 
+                    <p
                       className="text-[#8d3f34] text-3xl md:text-5xl font-normal font-dream-planner whitespace-nowrap"
                     >
-                    SIGN UP!
+                      SIGN UP!
                     </p>
                   </button>
                 </div>
@@ -309,19 +309,19 @@ function App({ events }: { events: EventLocation[] }) {
         <div className="absolute bottom-[30px] left-0 w-full h-[800px] z-0 pointer-events-none">
           <img src="/decorative/clouds-3.webp" alt="" className="w-full h-full object-cover select-none object-top" />
         </div>
-        
+
         <div className="absolute bottom-0 left-0 w-full h-[613px] z-0 pointer-events-none">
           <img src="/backgrounds/seafloor.webp" alt="" className="w-full h-full object-cover select-none" />
         </div>
-        
+
         <div className="absolute bottom-[200px] left-32 w-[569px] h-[676px] pointer-events-none">
-          <img 
-            src="/compressed/characters/astronaut.webp" 
-            alt="" 
+          <img
+            src="/compressed/characters/astronaut.webp"
+            alt=""
             className="w-full h-full object-cover transform rotate-[172deg] scale-y-[-1] select-none"
           />
         </div>
-        
+
         <div className="absolute top-[0px] z-45 right-0 w-[150px] md:w-[352px] pointer-events-none">
           <img
             src="/compressed/decorative/cogs-top-right.webp" alt=""
@@ -332,7 +332,7 @@ function App({ events }: { events: EventLocation[] }) {
         <div className="absolute invisible md:visible top-[55%] z-45 left-0 w-[260px] pointer-events-none">
           <img src="/compressed/decorative/cogs-mid-left.webp" alt="" className="w-full h-full object-contain select-none" />
         </div>
-        
+
         <div className="absolute invisible md:visible top-[75%] z-45 right-0 translate-x-20 w-[280px] pointer-events-none">
           <img src="/compressed/decorative/single-cog-1.webp" alt="" className="w-full h-full object-contain select-none" />
         </div>
@@ -342,7 +342,7 @@ function App({ events }: { events: EventLocation[] }) {
         </div>
 
         <div id="steps" className="relative z-40 flex flex-col gap-24 items-center px-12 max-w-7xl mx-auto pt-12 md:pt-0">
-          <Step 
+          <Step
             stepNumber={1}
             imageSrc="/compressed/ui/step-signup.jpeg"
             imageAlt="Step 1"
@@ -350,7 +350,7 @@ function App({ events }: { events: EventLocation[] }) {
             Sign up for a <br></br><span className="font-bold text-[#F77034]">Campfire</span> near you
           </Step>
 
-          <Step 
+          <Step
             stepNumber={2}
             imageSrc="/compressed/ui/step-team.webp"
             imageAlt="Step 2"
@@ -359,7 +359,7 @@ function App({ events }: { events: EventLocation[] }) {
             Grab <span className="font-bold text-[#F77034]">friends</span> (or make new friends!) and <span className='font-bold'>form a <span className='text-[#F77034]'>team of 2-3</span></span>
           </Step>
 
-          <Step 
+          <Step
             stepNumber={3}
             imageSrc="/compressed/ui/step-workshops.webp"
             imageAlt="Step 3"
@@ -367,7 +367,7 @@ function App({ events }: { events: EventLocation[] }) {
             Learn from <span className="text-[#F77034] font-bold">workshops</span>, enjoy <span className='font-bold'>free food and merch!</span>
           </Step>
 
-          <Step 
+          <Step
             stepNumber={4}
             imageSrc="/compressed/ui/step-build.webp"
             imageAlt="Step 4"
@@ -375,14 +375,14 @@ function App({ events }: { events: EventLocation[] }) {
           >
             <span className="text-[#F77034] font-bold">Build</span> your game & <span className="text-[#F77034] font-bold">publish</span> it on itch.io!
           </Step>
-          
+
           <div className="flex justify-end mt-12">
-            <button 
+            <button
               className="bg-[#E77232] rounded-[20px] px-16 py-8 transform rotate-[2deg] hover:scale-105 transition-transform shadow-[0_8px_20px_rgba(0,0,0,0.25)] cursor-pointer active:scale-95 animate-float-up-down"
               type="button"
               onClick={() => window.open("https://docs.google.com/document/d/14sMLsvxpBFtdzNOvmMJyjIrggKdaXLJ2GMiOoBcE8-M/", "_blank")}
             >
-              <p 
+              <p
                 className="text-5xl md:text-6xl font-normal font-dream-planner"
                 style={{ color: "rgba(255, 255, 255, 0.69)" }}
               >
@@ -407,7 +407,7 @@ function App({ events }: { events: EventLocation[] }) {
               <p>
                 You can make a change: inspire someone to build a game for the first time, help someone
                 fall in love with computers, run an <i>incredible</i> game jam that you can invite all your
-                friends to. 
+                friends to.
               </p>
 
               <p><b>This February, what if you organized a game jam in your city?</b></p>
@@ -447,9 +447,9 @@ function App({ events }: { events: EventLocation[] }) {
         </div>
 
         <div className="absolute bottom-48 left-32 md:bottom-0 md:left-0 w-[80vw] pointer-events-none scale-250 md:scale-100">
-          <img 
-            src="/decorative/moon-composite.webp" 
-            alt="" 
+          <img
+            src="/decorative/moon-composite.webp"
+            alt=""
             className="w-full h-full object-contain transform rotate-[346deg] select-none"
           />
         </div>
@@ -466,15 +466,15 @@ function App({ events }: { events: EventLocation[] }) {
           <h2
             id="previous-events"
             className="text-[#d7cfeb] text-6xl font-bold text-center mb-8 font-ember-and-fire"
-            style={{ 
+            style={{
               textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
             }}
           >
             Stories from past events
           </h2>
-          
+
           <div className="flex flex-col min-[1050px]:flex-row gap-12 justify-between w-full items-center">
-            <StoryCard 
+            <StoryCard
               imageSrc="/stories/counterspell.webp"
               imageAlt=""
               titleImageSrc="/compressed/branding/logo-counterspell.webp"
@@ -486,7 +486,7 @@ function App({ events }: { events: EventLocation[] }) {
               eventUrl="https://counterspell.hackclub.com/"
             />
 
-            <StoryCard 
+            <StoryCard
               imageSrc="/stories/scrapyard.webp"
               imageAlt=""
               titleImageSrc="/branding/logo-scrapyard.svg"
@@ -498,7 +498,7 @@ function App({ events }: { events: EventLocation[] }) {
               eventUrl="https://scrapyard.hackclub.com/"
             />
 
-            <StoryCard 
+            <StoryCard
               imageSrc="/compressed/stories/daydream.webp"
               imageAlt=""
               titleImageSrc="/compressed/branding/logo-daydream.webp"
@@ -518,15 +518,15 @@ function App({ events }: { events: EventLocation[] }) {
           <h2
             id="games-made"
             className="text-[#f1ebff] text-6xl font-bold text-center mb-8 font-ember-and-fire"
-            style={{ 
+            style={{
               textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
             }}
           >
             Favorite games from past events
           </h2>
-          
+
           <div className="flex flex-col md:flex-row gap-16 md:gap-5 w-full justify-between">
-            <GameCard 
+            <GameCard
               imageSrc="/games/office-click-clack.webp"
               imageAlt="Office Click Clack"
               title="Office Click Clack"
@@ -534,7 +534,7 @@ function App({ events }: { events: EventLocation[] }) {
               href="https://theavgeekbee.itch.io/office-click-clack"
             />
 
-            <GameCard 
+            <GameCard
               imageSrc="/games/zero-sum.webp"
               imageAlt="Zero Sum"
               title="Zero Sum"
@@ -542,7 +542,7 @@ function App({ events }: { events: EventLocation[] }) {
               href="https://arandompsi.itch.io/zero-sum"
             />
 
-            <GameCard 
+            <GameCard
               imageSrc="/games/return-to-sender.webp"
               imageAlt="Return to The Sender"
               title="Return to The Sender"
@@ -550,9 +550,9 @@ function App({ events }: { events: EventLocation[] }) {
               href="https://i1rs7.itch.io/return-to-the-sender"
             />
           </div>
-          
+
           <div className="flex justify-center mt-12">
-            <button 
+            <button
               className="bg-[#45B4F5] rounded-[20px] px-12 py-6 transform rotate-[-2deg] hover:scale-105 transition-transform shadow-[0_8px_20px_rgba(0,0,0,0.25)] cursor-pointer active:scale-95"
               type="button"
               onClick={() => window.open("https://itch.io/jam/daydream-global", "_blank")}
@@ -575,8 +575,8 @@ function App({ events }: { events: EventLocation[] }) {
 
       <section className="relative pb-64 bg-[#384FBC] md:bg-[#081F8B]">
         <div className="absolute w-full h-full z-10 pointer-events-none invisible md:visible">
-          <img 
-            src="/compressed/decorative/speech-bubble-bg.webp" 
+          <img
+            src="/compressed/decorative/speech-bubble-bg.webp"
             alt=""
             className="w-full h-full select-none pointer-events-none"
           />
@@ -586,7 +586,7 @@ function App({ events }: { events: EventLocation[] }) {
           <h2
             id="faq"
             className="text-[#d7cfeb] text-[128px] font-bold text-center mb-16 font-ember-and-fire"
-            style={{ 
+            style={{
               textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
             }}
           >
@@ -600,17 +600,17 @@ function App({ events }: { events: EventLocation[] }) {
                 <div className="bg-[#AD684F] flex-1 w-full py-4"></div>
                 <img src="/ui/woodboard-1-bottom.svg" alt="" className="w-full flex-shrink-0 select-none" />
               </div>
-              
+
               <div className="relative z-10 flex flex-col gap-10 items-center md:px-16 pt-8 w-[100%] md:w-[608px]">
-                <p 
+                <p
                   className="text-[#d7cfeb] text-6xl font-bold text-center mb-4 font-ember-and-fire"
-                  style={{ 
+                  style={{
                     textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
                   }}
                 >
                   Participant
                 </p>
-                
+
                 <FaqQuestion question="What is a game jam?">
                   A game jam is an event where you build a game from scratch in a short time period! It's all about creativity, teamwork, and having fun while learning new skills.
                 </FaqQuestion>
@@ -636,17 +636,17 @@ function App({ events }: { events: EventLocation[] }) {
                 <div className="bg-[#AD684F] flex-1 w-full"></div>
                 <img src="/ui/woodboard-2-bottom.svg" alt="" className="w-full flex-shrink-0 select-none" />
               </div>
-              
+
               <div className="relative z-10 flex flex-col gap-10 items-center px-4 md:px-16 pt-9 w-full md:w-[608px]">
-                <p 
+                <p
                   className="text-[#d7cfeb] text-6xl font-bold text-center mb-4 font-ember-and-fire"
-                  style={{ 
+                  style={{
                     textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
                   }}
                 >
                   Organizer
                 </p>
-                
+
                 <FaqQuestion question="Can I organize a Campfire in my city?">
                   Absolutely! We're always looking for passionate organizers. If you're ready to bring the magic of game development to your community, we'd love to help.
                 </FaqQuestion>
@@ -677,9 +677,9 @@ function App({ events }: { events: EventLocation[] }) {
         />
 
         <div className="relative w-full px-4 pb-32 md:pb-16 md:px-0 bg-[#0f371d] -mt-3 flex flex-col items-center justify-center gap-16 md:gap-6 z-10">
-          <p 
+          <p
             className="text-white text-3xl md:text-3xl text-center font-bold font-ember-and-fire"
-            style={{ 
+            style={{
               textShadow: "0px 4px 4px rgba(0,0,0,0.25)"
             }}
           >
@@ -692,12 +692,12 @@ function App({ events }: { events: EventLocation[] }) {
               <a href="https://hackclub.com/slack" target="_blank" className="hover:underline">Slack</a>
               <a href="https://hackclub.com/clubs" target="_blank" className="hover:underline">Clubs</a>
               <a href="https://hackclub.com/conduct/" target="_blank" className="hover:underline">Code of Conduct</a>
-            
+
               <p className="text-white text-sm md:text-md text-right max-w-96 font-ember-and-fire">
                 © 2026 Hack Club. 501(c)(3) nonprofit (EIN: 81-2908499)
               </p>
             </div>
-            
+
             <div className="flex-1 text-left">
               <p className="text-white text-lg md:text-xl font-ember-and-fire leading-relaxed mb-4">
                 Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical high schoolers. We believe you learn best by building so we're creating community and providing grants so you can make awesome projects. In the past few years, we've partnered with GitHub to run <a href="https://summer.hackclub.com/" target="_blank" className="underline hover:text-gray-300">Summer of Making</a>, hosted the <a href="https://github.com/hackclub/the-hacker-zephyr" target="_blank" className="underline hover:text-gray-300">world's longest hackathon on land</a>, and ran <a href="https://www.youtube.com/watch?v=QvCoISXfcE8" target="_blank" className="underline hover:text-gray-300">Canada's largest high school hackathon</a>.
@@ -711,11 +711,11 @@ function App({ events }: { events: EventLocation[] }) {
       </footer>
 
       {isMapOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4"
           onClick={() => setIsMapOpen(false)}
         >
-          <div 
+          <div
             className="relative w-[90vw] h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -725,8 +725,8 @@ function App({ events }: { events: EventLocation[] }) {
             >
               ✕
             </button>
-            <iframe 
-              src="/map" 
+            <iframe
+              src="/map"
               className="w-full h-full rounded-2xl"
             />
           </div>

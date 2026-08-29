@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/events/public",
+            "destination": "https://cockpit.hackclub.com/api/events/public"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
+}
