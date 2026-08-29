@@ -10,13 +10,13 @@
     "sync:once": "tsx -e \"import('./src/lib/airtable.js').then(m => m.airtableSyncWorker.syncEvents())\""
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.1",
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/svelte": "^7.2.3",
+    "@astrojs/node": "^11.0.0",
+    "@astrojs/react": "^6.0.0",
+    "@astrojs/svelte": "^9.0.0",
     "@prisma/adapter-pg": "7.1.0",
     "@prisma/client": "7.1.0",
     "@prisma/config": "7.1.0",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "^4.3.2",
     "@types/leaflet": "^1.9.21",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
